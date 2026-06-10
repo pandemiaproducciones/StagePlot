@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RIDER MANAGER v1.2</title>
+    <title>RIDER MANAGER v1.3</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
             --primary: #111111;
             --bg: #f4f6f8;
             --card: #ffffff;
-            --border: #cccccc;
+            --border: #bbbbbb;
             --accent: #0066cc;
             --danger: #cc0000;
         }
@@ -27,7 +27,7 @@
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1500px;
             margin: 0 auto;
         }
 
@@ -47,7 +47,6 @@
             font-size: 24px;
             text-transform: uppercase;
             font-weight: 700;
-            letter-spacing: 0.5px;
         }
 
         .version {
@@ -66,21 +65,19 @@
             font-weight: 600;
             padding: 8px;
             border: 1px dashed var(--border);
-            width: 380px;
+            width: 400px;
             text-transform: uppercase;
         }
 
-        /* Diseño de la aplicación */
+        /* Estructura Dual del Software */
         .main-layout {
             display: grid;
             grid-template-columns: 420px 1fr;
             gap: 25px;
         }
 
-        @media (max-width: 1024px) {
-            .main-layout {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width: 1100px) {
+            .main-layout { grid-template-columns: 1fr; }
         }
 
         .panel {
@@ -94,16 +91,14 @@
 
         .panel h2 {
             margin-top: 0;
-            font-size: 15px;
+            font-size: 14px;
             text-transform: uppercase;
             border-bottom: 2px solid var(--primary);
             padding-bottom: 8px;
             letter-spacing: 0.5px;
         }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+        .form-group { margin-bottom: 15px; }
 
         label {
             display: block;
@@ -125,7 +120,7 @@
 
         .radio-group, .checkbox-group {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
             margin-top: 5px;
         }
@@ -134,12 +129,12 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            background: #eee;
-            padding: 6px 12px;
+            background: #eeeeee;
+            padding: 8px 12px;
             border-radius: 4px;
             cursor: pointer;
             font-size: 12px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .btn-primary {
@@ -157,22 +152,20 @@
         }
 
         .btn-primary:hover { background: #333333; }
-        .btn-export { background: #2e7d32; margin-top: 10px; }
-        .btn-export:hover { background: #1b5e20; }
+        .btn-export { background: #111111; margin-top: 10px; }
 
-        /* Lista de control izquierda */
+        /* Lista de administración izquierda */
         .fila-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
+            padding: 12px 10px;
             border-bottom: 1px solid var(--border);
             font-size: 13px;
         }
-
         .fila-actions { display: flex; gap: 5px; }
         .btn-action {
-            padding: 4px 8px;
+            padding: 5px 8px;
             font-size: 11px;
             font-weight: 600;
             border: none;
@@ -184,13 +177,12 @@
         .btn-edit { background: var(--accent); color: white; }
         .btn-del { background: var(--danger); color: white; }
 
-        /* ESTRUCTURA DEL DOCUMENTO TÉCNICO EXPORTABLE */
+        /* LIENZO DE EXPORTACIÓN IDÉNTICO A LA REFERENCIA */
         .document-container {
             background: #ffffff;
             border: 1px solid #000000;
             padding: 40px;
             box-sizing: border-box;
-            min-height: 850px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -198,7 +190,7 @@
 
         .doc-header-title {
             text-align: center;
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 700;
             text-transform: uppercase;
             margin: 0 0 5px 0;
@@ -210,179 +202,40 @@
             font-size: 14px;
             font-weight: 600;
             text-transform: uppercase;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             border-bottom: 2px solid #000000;
-            padding-bottom: 10px;
+            padding-bottom: 8px;
+            letter-spacing: 0.5px;
         }
 
-        /* DISEÑO DE ESCENARIO GEOMÉTRICO AUTÉNTICO */
+        /* Caja contenedora del SVG */
         .stage-box {
             border: 2px solid #000000;
-            position: relative;
-            height: 480px;
             background: #ffffff;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 25px;
-        }
-
-        .podium {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 40px;
-            border: 2px solid #000000;
-            background: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 9px;
-            font-weight: 700;
-            text-transform: uppercase;
-            z-index: 10;
-        }
-
-        /* Zona fija de percusión al fondo */
-        .percussion-bay {
-            position: absolute;
-            top: 10px;
-            left: 5%;
-            width: 90%;
-            height: 90px;
-            border: 1px dashed #000000;
-            background: #fafafa;
-            padding: 5px;
-            box-sizing: border-box;
-        }
-
-        .percussion-bay-title {
-            font-size: 10px;
-            font-weight: 700;
-            text-align: center;
-            text-transform: uppercase;
-            border-bottom: 1px dashed #000000;
-            padding-bottom: 2px;
-            margin-bottom: 5px;
-        }
-
-        .percussion-stations-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .percussion-card {
-            border: 1px solid #000000;
-            background: #ffffff;
-            padding: 4px 8px;
-            font-size: 10px;
-            font-weight: 600;
-            border-radius: 4px;
-            text-align: center;
-        }
-
-        /* Arcos matemáticos concéntricos para filas de orquesta/banda */
-        .arc-row {
-            position: absolute;
-            bottom: -50px; /* Punto de pivote centralizado abajo */
-            left: 50%;
-            transform: translateX(-50%);
-            border: 1px dashed #888888;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            box-sizing: border-box;
-            pointer-events: none;
-        }
-
-        /* Variación de filas rectas */
-        .straight-row-container {
-            position: absolute;
-            left: 5%;
-            width: 90%;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            border-top: 1px dashed #888888;
-            padding-top: 8px;
-        }
-
-        /* Render de Sillas y Atriles Individuales */
-        .setup-group {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-            position: relative;
-        }
-
-        .icon-chair {
-            width: 14px;
-            height: 14px;
-            border: 1px solid #000000;
-            background: #e1e1e1;
             border-radius: 2px;
-            position: relative;
-        }
-        .icon-chair::after {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: 1px;
-            width: 10px;
-            height: 2px;
-            background: #000000;
+            margin-bottom: 25px;
+            width: 100%;
         }
 
-        .icon-stand {
-            width: 12px;
-            height: 3px;
-            background: #000000;
-            margin-top: 1px;
-            position: relative;
-        }
-        .icon-stand::after {
-            content: '';
-            position: absolute;
-            top: 3px;
-            left: 5px;
-            width: 2px;
-            height: 2px;
-            background: #000000;
-            border-radius: 50%;
+        .stage-svg {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
-        .group-label {
-            font-size: 8px;
-            font-weight: 700;
-            white-space: nowrap;
-            background: #ffffff;
-            padding: 0 2px;
-            position: absolute;
-            bottom: -12px;
-        }
-
-        /* Estructuras de tablas idénticas a la imagen técnica */
-        .doc-tables-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
+        /* Estructuras de tablas del Rider Técnico */
         .technical-table {
             width: 100%;
             border-collapse: collapse;
+            margin-bottom: 20px;
         }
 
         .technical-table th, .technical-table td {
             border: 1px solid #000000;
-            padding: 8px 12px;
+            padding: 10px 14px;
             font-size: 12px;
             color: #000000;
+            vertical-align: top;
         }
 
         .technical-table th {
@@ -390,43 +243,28 @@
             color: #ffffff;
             text-transform: uppercase;
             font-weight: 700;
-            font-size: 11px;
-            letter-spacing: 0.5px;
+            font-size: 12px;
+            text-align: left;
         }
 
         .doc-footer {
-            margin-top: 35px;
+            margin-top: 20px;
             text-align: center;
             font-size: 11px;
             font-weight: 600;
-            letter-spacing: 1px;
-            color: #111111;
+            letter-spacing: 1.5px;
+            color: #000000;
             text-transform: uppercase;
             border-top: 2px solid #000000;
-            padding-top: 12px;
+            padding-top: 15px;
         }
 
-        /* ESTILOS ESTRICTOS DE IMPRESIÓN/EXPORTACIÓN */
+        /* CONFIGURACIÓN ESTRICTA DE IMPRESIÓN */
         @media print {
-            body {
-                background: #ffffff;
-                padding: 0;
-            }
-            .sidebar, header {
-                display: none !important;
-            }
-            .main-layout {
-                grid-template-columns: 1fr;
-            }
-            .document-container {
-                border: none;
-                padding: 0;
-                width: 100%;
-            }
-            .stage-box {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
+            body { background: #ffffff; padding: 0; }
+            .sidebar, header { display: none !important; }
+            .main-layout { grid-template-columns: 1fr; }
+            .document-container { border: none; padding: 0; width: 100%; }
         }
     </style>
 </head>
@@ -434,8 +272,8 @@
 
 <div class="container">
     <header>
-        <h1>RIDER MANAGER <span class="version">v1.2</span></h1>
-        <input type="text" id="nombre-agrupacion" class="input-agrupacion" value="BANDA SINFÓNICA DE MUESTRA" oninput="actualizarTodo()">
+        <h1>RIDER MANAGER <span class="version">v1.3</span></h1>
+        <input type="text" id="nombre-agrupacion" class="input-agrupacion" value="BANDA SINFÓNICA DE SAN JOSÉ" oninput="actualizarTodo()">
     </header>
 
     <div class="main-layout">
@@ -445,96 +283,90 @@
                 <input type="hidden" id="edit-index" value="-1">
                 
                 <div class="form-group">
-                    <label for="nombre-seccion">Nombre Personalizado (Ej: Clarinetes 1º o Percusión 1)</label>
-                    <input type="text" id="nombre-seccion" placeholder="Escribe el nombre a tu gusto...">
+                    <label Zor for="nombre-seccion">Nombre de la Fila (Ej: FILA 1 (Madera-Oboe, Flauta))</label>
+                    <input type="text" id="nombre-seccion" placeholder="Escribe la etiqueta de la fila...">
                 </div>
 
                 <div class="form-group">
-                    <label>Ubicación / Tipo de Fila</label>
+                    <label>Tipo de Disposición</label>
                     <div class="radio-group">
-                        <label class="radio-label"><input type="radio" name="tipo-fila" value="arco" checked onclick="toggleSeccionCampos()"> Arco Concéntrico</label>
-                        <label class="radio-label"><input type="radio" name="tipo-fila" value="recta" onclick="toggleSeccionCampos()"> Fila Recta</label>
-                        <label class="radio-label"><input type="radio" name="tipo-fila" value="percursion" onclick="toggleSeccionCampos()"> Bloque de Percusión</label>
+                        <label class="radio-label"><input type="radio" name="tipo-fila" value="arco" checked onclick="toggleCampos()"> Arco Semicircular</label>
+                        <label class="radio-label"><input type="radio" name="tipo-fila" value="recta" onclick="toggleCampos()"> Fila Recta</label>
+                        <label class="radio-label"><input type="radio" name="tipo-fila" value="percursion" onclick="toggleCampos()"> Zona Percusión</label>
                     </div>
                 </div>
 
-                <div id="opciones-arco-recta">
+                <div id="opciones-geometria">
                     <div class="form-group">
-                        <label for="nivel-arco">Fila / Profundidad (1 al 4)</label>
+                        <label for="nivel-arco">Radio / Profundidad del Escenario</label>
                         <select id="nivel-arco">
-                            <option value="1">Fila 1 (Cercana al director)</option>
-                            <option value="2">Fila 2</option>
-                            <option value="3">Fila 3</option>
-                            <option value="4">Fila 4 (Lejana del director)</option>
+                            <option value="1">Arco 1 (Interno - Flautas/Oboes)</option>
+                            <option value="2">Arco 2 (Clarinetes/Fagotes)</option>
+                            <option value="3">Arco 3 (Saxofones/Cornos)</option>
+                            <option value="4">Arco 4 (Externo - Metales Pesados)</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Alineación Lateral</label>
+                        <label>Sector / Alineación</label>
                         <div class="radio-group">
-                            <label class="radio-label"><input type="radio" name="alineacion" value="Centro" checked> Centro</label>
+                            <label class="radio-label"><input type="radio" name="alineacion" value="Completo" checked> Completo</label>
                             <label class="radio-label"><input type="radio" name="alineacion" value="Izquierda"> Izquierda</label>
                             <label class="radio-label"><input type="radio" name="alineacion" value="Derecha"> Derecha</label>
                         </div>
                     </div>
                 </div>
 
-                <div id="cantidades-mobiliario">
+                <div id="cantidades-hardware">
                     <div class="form-group">
-                        <label for="cant-sillas">Cantidad de Sillas</label>
-                        <input type="number" id="cant-sillas" min="0" value="4">
+                        <label for="cant-sillas">Número de Sillas</label>
+                        <input type="number" id="cant-sillas" min="0" value="8">
                     </div>
                     <div class="form-group">
-                        <label for="cant-atriles">Cantidad de Atriles</label>
-                        <input type="number" id="cant-atriles" min="0" value="2">
+                        <label for="cant-atriles">Número de Atriles</label>
+                        <input type="number" id="cant-atriles" min="0" value="4">
                     </div>
                 </div>
 
-                <div id="opciones-percursion-checks" style="display:none;">
+                <div id="opciones-percursion" style="display:none;">
                     <div class="form-group">
-                        <label>Instrumentos en esta Estación</label>
+                        <label>Instrumentos a Dibujar en el Set</label>
                         <div class="checkbox-group">
-                            <label class="checkbox-label"><input type="checkbox" id="p-timbales"> Timbales</label>
-                            <label class="checkbox-label"><input type="checkbox" id="p-marimba"> Marimba/Placas</label>
-                            <label class="checkbox-label"><input type="checkbox" id="p-bombo"> Bombo/Tambor</label>
-                            <label class="checkbox-label"><input type="checkbox" id="p-platos"> Platos</label>
+                            <label class="checkbox-label"><input type="checkbox" id="p-timbales" checked> Timbales</label>
+                            <label class="checkbox-label"><input type="checkbox" id="p-marimba" checked> Marimba</label>
+                            <label class="checkbox-label"><input type="checkbox" id="p-bombo" checked> Bombo</label>
+                            <label class="checkbox-label"><input type="checkbox" id="p-platos" checked> Platos</label>
                         </div>
                     </div>
                 </div>
 
-                <button class="btn-primary" id="btn-guardar-fila" onclick="guardarFila()">Aplicar al Escenario</button>
-                <button class="btn-primary btn-export" onclick="window.print()">Exportar Rider Imprimible</button>
+                <button class="btn-primary" id="btn-guardar" onclick="guardarFila()">Aplicar al Plano</button>
+                <button class="btn-primary btn-export" onclick="window.print()">Exportar en Alta Calidad</button>
             </div>
 
             <div class="panel">
-                <h2>Secciones Agregadas</h2>
+                <h2>Secciones Registradas</h2>
                 <div id="lista-filas-agregadas"></div>
             </div>
         </div>
 
-        <div class="document-container" id="documento-impresion">
+        <div class="document-container">
             <div>
-                <h1 class="doc-header-title" id="doc-titulo">BANDA SINFÓNICA DE MUESTRA</h1>
+                <h1 class="doc-header-title" id="doc-titulo">BANDA SINFÓNICA DE SAN JOSÉ</h1>
                 <div class="doc-header-subtitle">Plano de Escenario y Requerimientos de Mobiliario</div>
                 
-                <div class="stage-box" id="stage-box-escenario">
-                    <div class="podium">Director</div>
-                    
-                    <div class="percussion-bay">
-                        <div class="percussion-bay-title">Zona de Percusión</div>
-                        <div class="percussion-stations-container" id="render-percusión-area"></div>
-                    </div>
-
-                    <div id="render-arcos-area"></div>
+                <div class="stage-box">
+                    <svg viewBox="0 0 1000 580" class="stage-svg" id="stage-svg-element">
+                        </svg>
                 </div>
             </div>
 
-            <div class="doc-tables-grid">
+            <div>
                 <table class="technical-table">
                     <thead>
                         <tr>
-                            <th style="width: 25%;">Artículo</th>
-                            <th style="width: 15%; text-align: center;">Cantidad</th>
-                            <th style="width: 60%;">Descripción / Distribución por Secciones</th>
+                            <th style="width: 25%;">ARTÍCULO</th>
+                            <th style="width: 15%;">CANTIDAD</th>
+                            <th style="width: 60%;">DESCRIPCIÓN / DISTRIBUCIÓN POR FILAS</th>
                         </tr>
                     </thead>
                     <tbody id="tabla-totales-body">
@@ -552,237 +384,282 @@
 <script>
     let listaFilas = [];
 
-    function toggleSeccionCampos() {
-        const tipo = document.querySelector('input[name="tipo-fila"]:checked').value;
-        const divArcoRecta = document.getElementById('opciones-arco-recta');
-        const divMobiliario = document.getElementById('cantidades-mobiliario');
-        const divPercusion = document.getElementById('opciones-percursion-checks');
+    // Valores iniciales por defecto idénticos a tu plano de referencia
+    if(listaFilas.length === 0) {
+        listaFilas.push({ nombre: "FILA 1 (Madera-Oboe, Flauta)", tipo: "arco", sillas: 8, atriles: 4, nivel: "1", alineacion: "Completo", perc_instrumentos: [] });
+        listaFilas.push({ nombre: "FILA 3 (Saxos, Cornos)", tipo: "arco", sillas: 12, atriles: 6, nivel: "2", alineacion: "Completo", perc_instrumentos: [] });
+        listaFilas.push({ nombre: "FILA 2 (Clarinete, Fagot)", tipo: "arco", sillas: 16, atriles: 8, nivel: "3", alineacion: "Completo", perc_instrumentos: [] });
+        listaFilas.push({ nombre: "FILA 4 (Metales-Trompetas, Trombones, Tubas)", tipo: "arco", sillas: 18, atriles: 9, nivel: "4", alineacion: "Completo", perc_instrumentos: [] });
+        listaFilas.push({ nombre: "Zona de Percusión", tipo: "percursion", sillas: 0, atriles: 0, nivel: "1", alineacion: "Completo", perc_instrumentos: ["Timbales", "Marimba", "Bombo", "Platos"] });
+    }
 
-        if(tipo === 'percursion') {
-            divArcoRecta.style.display = 'none';
-            divMobiliario.style.display = 'none';
-            divPercusion.style.display = 'block';
-        } else {
-            divArcoRecta.style.display = 'block';
-            divMobiliario.style.display = 'block';
-            divPercusion.style.display = 'none';
-        }
+    function toggleCampos() {
+        const tipo = document.querySelector('input[name="tipo-fila"]:checked').value;
+        document.getElementById('opciones-geometria').style.display = tipo === 'percursion' ? 'none' : 'block';
+        document.getElementById('cantidades-hardware').style.display = tipo === 'percursion' ? 'none' : 'block';
+        document.getElementById('opciones-percursion').style.display = tipo === 'percursion' ? 'block' : 'none';
     }
 
     function guardarFila() {
-        const nombre = document.getElementById('nombre-seccion').value.trim() || "Sección";
+        const nombre = document.getElementById('nombre-seccion').value.trim() || "Nueva Fila";
         const tipo = document.querySelector('input[name="tipo-fila"]:checked').value;
-        const sillas = tipo === 'percursion' ? 0 : (parseInt(document.getElementById('cant-sillas').value) || 0);
-        const atriles = tipo === 'percursion' ? 0 : (parseInt(document.getElementById('cant-atriles').value) || 0);
+        const sillas = tipo === 'percursion' ? 0 : parseInt(document.getElementById('cant-sillas').value) || 0;
+        const atriles = tipo === 'percursion' ? 0 : parseInt(document.getElementById('cant-atriles').value) || 0;
         const nivel = document.getElementById('nivel-arco').value;
         const alineacion = document.querySelector('input[name="alineacion"]:checked').value;
 
         let perc_instrumentos = [];
         if(tipo === 'percursion') {
             if(document.getElementById('p-timbales').checked) perc_instrumentos.push("Timbales");
-            if(document.getElementById('p-marimba').checked) perc_instrumentos.push("Marimba/Placas");
-            if(document.getElementById('p-bombo').checked) perc_instrumentos.push("Bombo/Tambor");
+            if(document.getElementById('p-marimba').checked) perc_instrumentos.push("Marimba");
+            if(document.getElementById('p-bombo').checked) perc_instrumentos.push("Bombo");
             if(document.getElementById('p-platos').checked) perc_instrumentos.push("Platos");
         }
 
         const editIndex = parseInt(document.getElementById('edit-index').value);
-        const datos = { nombre, tipo, sillas, atriles, nivel, alineacion, perc_instrumentos };
 
         if(editIndex === -1) {
-            listaFilas.push(datos);
+            listaFilas.push({ nombre, tipo, sillas, atriles, nivel, alineacion, perc_instrumentos });
         } else {
-            listaFilas[editIndex] = datos;
+            listaFilas[editIndex] = { nombre, tipo, sillas, atriles, nivel, alineacion, perc_instrumentos };
             document.getElementById('edit-index').value = "-1";
             document.getElementById('form-title').innerText = "Configurar Fila Instrumental";
-            document.getElementById('btn-guardar-fila').innerText = "Aplicar al Escenario";
+            document.getElementById('btn-guardar').innerText = "Aplicar al Plano";
         }
 
-        resetFormulario();
-        actualizarTodo();
-    }
-
-    function resetFormulario() {
         document.getElementById('nombre-seccion').value = "";
-        document.getElementById('cant-sillas').value = "4";
-        document.getElementById('cant-atriles').value = "2";
-        document.getElementById('p-timbales').checked = false;
-        document.getElementById('p-marimba').checked = false;
-        document.getElementById('p-bombo').checked = false;
-        document.getElementById('p-platos').checked = false;
-    }
-
-    function eliminarFila(index) {
-        listaFilas.splice(index, 1);
         actualizarTodo();
     }
 
-    function iniciarEdicion(index) {
-        const fila = listaFilas[index];
-        document.getElementById('nombre-seccion').value = fila.nombre;
-        document.querySelector(`input[name="tipo-fila"][value="${fila.tipo}"]`).checked = true;
-        toggleSeccionCampos();
+    function eliminarFila(idx) {
+        listaFilas.splice(idx, 1);
+        actualizarTodo();
+    }
 
-        if(fila.tipo !== 'percursion') {
-            document.getElementById('cant-sillas').value = fila.sillas;
-            document.getElementById('cant-atriles').value = fila.atriles;
-            document.getElementById('nivel-arco').value = fila.nivel;
-            document.querySelector(`input[name="alineacion"][value="${fila.alineacion}"]`).checked = true;
+    function iniciarEdicion(idx) {
+        const f = listaFilas[idx];
+        document.getElementById('nombre-seccion').value = f.nombre;
+        document.querySelector(`input[name="tipo-fila"][value="${f.tipo}"]`).checked = true;
+        toggleCampos();
+
+        if(f.tipo !== 'percursion') {
+            document.getElementById('cant-sillas').value = f.sillas;
+            document.getElementById('cant-atriles').value = f.atriles;
+            document.getElementById('nivel-arco').value = f.nivel;
+            document.querySelector(`input[name="alineacion"][value="${f.alineacion}"]`).checked = true;
         } else {
-            document.getElementById('p-timbales').checked = fila.perc_instrumentos.includes("Timbales");
-            document.getElementById('p-marimba').checked = fila.perc_instrumentos.includes("Marimba/Placas");
-            document.getElementById('p-bombo').checked = fila.perc_instrumentos.includes("Bombo/Tambor");
-            document.getElementById('p-platos').checked = fila.perc_instrumentos.includes("Platos");
+            document.getElementById('p-timbales').checked = f.perc_instrumentos.includes("Timbales");
+            document.getElementById('p-marimba').checked = f.perc_instrumentos.includes("Marimba");
+            document.getElementById('p-bombo').checked = f.perc_instrumentos.includes("Bombo");
+            document.getElementById('p-platos').checked = f.perc_instrumentos.includes("Platos");
         }
 
-        document.getElementById('edit-index').value = index;
-        document.getElementById('form-title').innerText = "Editando Fila";
-        document.getElementById('btn-guardar-fila').innerText = "Guardar Cambios";
+        document.getElementById('edit-index').value = idx;
+        document.getElementById('form-title').innerText = "Modificando Fila";
+        document.getElementById('btn-guardar').innerText = "Guardar Cambios";
     }
 
     function actualizarTodo() {
-        const nombreInput = document.getElementById('nombre-agrupacion').value.toUpperCase();
-        document.getElementById('doc-titulo').innerText = nombreInput || "RIDER TÉCNICO";
+        const tituloText = document.getElementById('nombre-agrupacion').value.toUpperCase();
+        document.getElementById('doc-titulo').innerText = tituloText || "RIDER TÉCNICO";
 
-        // Limpieza de capas
-        document.getElementById('lista-filas-agregadas').innerHTML = "";
-        document.getElementById('render-percusión-area').innerHTML = "";
-        document.getElementById('render-arcos-area').innerHTML = "";
+        const svg = document.getElementById('stage-svg-element');
+        const listaLog = document.getElementById('lista-filas-agregadas');
+        
+        listaLog.innerHTML = "";
+        
+        // Inicialización matemática del Canvas SVG (Marco y Semicírculo Base)
+        let svgContent = `
+            <path d="M 50 500 A 450 450 0 0 1 950 500 Z" fill="none" stroke="#111111" stroke-width="2"/>
+            <line x1="50" y1="500" x2="950" y2="500" stroke="#111111" stroke-width="2"/>
+            
+            <rect x="470" y="520" width="60" height="40" fill="#ffffff" stroke="#111111" stroke-width="2"/>
+            <text x="500" y="545" font-family='Montserrat' font-size='10' font-weight='700' text-anchor='middle'>DIRECTOR</text>
+        `;
 
         let totalSillas = 0, totalAtriles = 0;
-        let descSillas = [], descAtriles = [], descPercusion = [];
+        let desgloseSillas = [], desgloseAtriles = [], desglosePercusion = [];
 
-        // Radios de los arcos concéntricos fijos para simular las filas
-        const mapaRadios = { "1": 190, "2": 260, "3": 330, "4": 400 };
+        // Radios concéntricos fijos con centro en el podio (500, 560)
+        const centroX = 500, centroY = 560;
+        const radiosCapas = { "1": 150, "2": 230, "3": 310, "4": 390 };
 
         listaFilas.forEach((fila, idx) => {
-            // Totales de hardware logístico
             totalSillas += fila.sillas;
             totalAtriles += fila.atriles;
-            if(fila.sillas > 0) descSillas.push(`${fila.nombre} (${fila.sillas})`);
-            if(fila.atriles > 0) descAtriles.push(`${fila.nombre} (${fila.atriles})`);
-            if(fila.tipo === 'percursion') descPercusion.push(`${fila.nombre}: [${fila.perc_instrumentos.join(', ')}]`);
+            if(fila.sillas > 0) desgloseSillas.push(`${fila.nombre} (${fila.sillas})`);
+            if(fila.atriles > 0) desgloseAtriles.push(`${fila.nombre} (${fila.atriles})`);
 
-            // 1. Agregar a la lista de administración lateral
+            // Añadir al panel de administración izquierdo
             const item = document.createElement('div');
             item.className = "fila-item";
             item.innerHTML = `
-                <div>
-                    <strong>${fila.nombre}</strong><br>
-                    <small>${fila.tipo === 'percursion' ? 'Set Percusión' : fila.sillas+'S / '+fila.atriles+'A'}</small>
-                </div>
+                <div><strong>${fila.nombre}</strong><br><small>${fila.tipo==='percursion' ? 'Set de Percusión' : fila.sillas+' Sillas / '+fila.atriles+' Atriles'}</small></div>
                 <div class="fila-actions">
                     <button class="btn-action btn-edit" onclick="iniciarEdicion(${idx})">Editar</button>
                     <button class="btn-action btn-del" onclick="eliminarFila(${idx})">X</button>
                 </div>
             `;
-            document.getElementById('lista-filas-agregadas').appendChild(item);
+            listaLog.appendChild(item);
 
-            // 2. Renderización en Mapa de Escenario Geométrico
+            // RENDERIZADO GEOMÉTRICO DENTRO DEL SVG
             if(fila.tipo === 'percursion') {
-                const pCard = document.createElement('div');
-                pCard.className = "percussion-card";
-                pCard.innerHTML = `<strong>${fila.nombre.toUpperCase()}</strong><br>${fila.perc_instrumentos.join(' • ') || 'Vacío'}`;
-                document.getElementById('render-percusión-area').appendChild(pCard);
+                desglosePercusion.push(fila.perc_instrumentos.join(' • '));
+                // Dibujo de la Zona de Percusión al Fondo
+                svgContent += `
+                    <g id="percussion-block">
+                        <path d="M 200 110 L 800 110 L 850 40 L 150 40 Z" fill="#fafafa" stroke="#111111" stroke-width="1.5" stroke-dasharray="4,4"/>
+                        <text x="500" y="58" font-family='Montserrat' font-size='12' font-weight='700' text-anchor='middle'>ZONA DE PERCUSIÓN</text>
+                `;
+                
+                // Renderizar los instrumentos de percusión con vectores nativos
+                let posX = 240;
+                fila.perc_instrumentos.forEach(inst => {
+                    svgContent += `<line x1="${posX+35}" y1="75" x2="${posX+35}" y2="100" stroke="#111111" stroke-width="1"/>`;
+                    if(inst === "Timbales") {
+                        svgContent += `
+                            <circle cx="${posX}" cy="85" r="14" fill="#ffffff" stroke="#111111" stroke-width="1.5"/>
+                            <circle cx="${posX+22}" cy="85" r="12" fill="#ffffff" stroke="#111111" stroke-width="1.5"/>
+                            <circle cx="${posX+42}" cy="85" r="10" fill="#ffffff" stroke="#111111" stroke-width="1.5"/>
+                            <text x="${posX+21}" y="105" font-family='Montserrat' font-size='9' font-weight='600' text-anchor='middle'>Timbales</text>
+                        `;
+                    } else if(inst === "Marimba") {
+                        svgContent += `
+                            <rect x="${posX}" y="75" width="50" height="16" fill="#ffffff" stroke="#111111" stroke-width="1.5"/>
+                            <line x1="${posX+10}" y1="75" x2="${posX+10}" y2="91" stroke="#111111"/>
+                            <line x1="${posX+20}" y1="75" x2="${posX+20}" y2="91" stroke="#111111"/>
+                            <line x1="${posX+30}" y1="75" x2="${posX+30}" y2="91" stroke="#111111"/>
+                            <line x1="${posX+40}" y1="75" x2="${posX+40}" y2="91" stroke="#111111"/>
+                            <text x="${posX+25}" y="105" font-family='Montserrat' font-size='9' font-weight='600' text-anchor='middle'>Marimba</text>
+                        `;
+                    } else if(inst === "Bombo") {
+                        svgContent += `
+                            <circle cx="${posX+20}" cy="85" r="13" fill="#ffffff" stroke="#111111" stroke-width="1.5"/>
+                            <line x1="${posX+4}" y1="85" x2="${posX+36}" y2="85" stroke="#111111" stroke-width="1"/>
+                            <text x="${posX+20}" y="105" font-family='Montserrat' font-size='9' font-weight='600' text-anchor='middle'>Bombo</text>
+                        `;
+                    } else if(inst === "Platos") {
+                        svgContent += `
+                            <circle cx="${posX+15}" cy="85" r="10" fill="#ffffff" stroke="#111111" stroke-width="1.5"/>
+                            <line x1="${posX+15}" y1="85" x2="${posX+5}" y2="95" stroke="#111111"/>
+                            <line x1="${posX+15}" y1="85" x2="${posX+25}" y2="95" stroke="#111111"/>
+                            <text x="${posX+15}" y="105" font-family='Montserrat' font-size='9' font-weight='600' text-anchor='middle'>Platos</text>
+                        `;
+                    }
+                    posX += 140;
+                });
+                svgContent += `</g>`;
             } 
             else if(fila.tipo === 'arco') {
-                const radio = mapaRadios[fila.nivel];
-                const arcoDom = document.createElement('div');
-                arcoDom.className = "arc-row";
-                arcoDom.style.width = `${radio * 2}px`;
-                arcoDom.style.height = `${radio * 2}px`;
+                const r = radiosCapas[fila.nivel];
                 
-                // Distribuir objetos de forma equidistante en el arco
-                const totalElementos = Math.max(fila.sillas, fila.atriles);
-                let anguloInicio = 210; // Izquierda
-                let anguloFin = 330;    // Derecha
+                // Dibujar arco guía continuo en el plano técnico
+                svgContent += `<path d="M ${centroX - r} ${centroY} A ${r} ${r} 0 0 1 ${centroX + r} ${centroY}" fill="none" stroke="#222222" stroke-width="1" stroke-dasharray="4,4"/>`;
                 
-                if(fila.alineacion === 'Izquierda') { anguloInicio = 200; anguloFin = 260; }
-                if(fila.alineacion === 'Derecha') { anguloInicio = 280; anguloFin = 340; }
+                // Inyectar el texto identificador centrado sobre la curvatura de la fila
+                svgContent += `
+                    <defs><path id="textPath-${idx}" d="M ${centroX - r} ${centroY - 8} A ${r} ${r} 0 0 1 ${centroX + r} ${centroY - 8}"/></defs>
+                    <text font-family='Montserrat' font-size='10' font-weight='700' fill='#000000' text-anchor='middle'>
+                        <textPath href="#textPath-${idx}" startOffset="50%">${fila.nombre.toUpperCase()}</textPath>
+                    </text>
+                `;
 
-                const paso = totalElementos > 1 ? (anguloFin - anguloInicio) / (totalElementos - 1) : 0;
-                const anguloCentralUnico = anguloInicio + (anguloFin - anguloInicio) / 2;
+                // Distribución trigonométrica exacta orientada hacia el Director
+                let anguloMin = 195; // Extremo izquierdo
+                let anguloMax = 345; // Extremo derecho
+                
+                if(fila.alineacion === 'Izquierda') anguloMax = 265;
+                if(fila.alineacion === 'Derecha') anguloMin = 275;
 
-                for(let i=0; i<totalElementos; i++) {
-                    const anguloActual = totalElementos > 1 ? (anguloInicio + (paso * i)) : anguloCentralUnico;
-                    const rad = anguloActual * (Math.PI / 180);
+                const elementosFila = Math.max(fila.sillas, fila.atriles);
+                const pasoAngulo = elementosFila > 1 ? (anguloMax - anguloMin) / (elementosFila - 1) : 0;
+
+                for(let i = 0; i < elementosFila; i++) {
+                    const anguloActual = elementosFila > 1 ? (anguloMin + (pasoAngulo * i)) : 270;
+                    const radianes = anguloActual * (Math.PI / 180);
                     
-                    // Coordenadas trigonométricas relativas al radio del arco
-                    const x = radio + radio * Math.cos(rad);
-                    const y = radio + radio * Math.sin(rad);
+                    const posX = centroX + r * Math.cos(radianes);
+                    const posY = centroY + r * Math.sin(radianes);
+                    const rotacionGrados = anguloActual + 90; // Angulación exacta al centro del podio
 
-                    const unitGroup = document.createElement('div');
-                    unitGroup.className = "setup-group";
-                    unitGroup.style.position = "absolute";
-                    unitGroup.style.left = `${x}px`;
-                    unitGroup.style.top = `${y}px`;
-                    unitGroup.style.transform = `translate(-50%, -50%) rotate(${anguloActual + 90}deg)`;
+                    svgContent += `<g transform="translate(${posX}, ${posY}) rotate(${rotacionGrados})">`;
 
-                    if(i < fila.sillas) unitGroup.appendChild(document.createElement('div')).className = "icon-chair";
-                    if(i < fila.atriles) unitGroup.appendChild(document.createElement('div')).className = "icon-stand";
-                    
-                    if(i === 0) {
-                        const lbl = document.createElement('div');
-                        lbl.className = "group-label";
-                        lbl.innerText = fila.nombre;
-                        unitGroup.appendChild(lbl);
+                    // Icono Vectorial de la Silla de Orquesta (Vista Superior Plena)
+                    if(i < fila.sillas) {
+                        svgContent += `
+                            <rect x="-8" y="-8" width="16" height="16" rx="2" fill="#ffffff" stroke="#000000" stroke-width="1.5" />
+                            <line x1="-6" y1="-8" x2="6" y2="-8" stroke="#000000" stroke-width="2.5" />
+                        `;
                     }
-
-                    arcoDom.appendChild(unitGroup);
+                    // Icono Vectorial del Atril Técnico (Frente a la silla)
+                    if(i < fila.atriles) {
+                        svgContent += `
+                            <line x1="-7" y1="-14" x2="7" y2="-14" stroke="#000000" stroke-width="2" />
+                            <circle cx="0" cy="-14" r="1.5" fill="#000000" />
+                        `;
+                    }
+                    svgContent += `</g>`;
                 }
-                document.getElementById('render-arcos-area').appendChild(arcoDom);
             }
             else if(fila.tipo === 'recta') {
-                const lineaDom = document.createElement('div');
-                lineaDom.className = "straight-row-container";
-                // Posicionamiento de altura en base al nivel seleccionado
-                lineaDom.style.top = `${450 - (fila.nivel * 75)}px`;
+                // Alternativa lineal rígida
+                const alturaY = 500 - (parseInt(fila.nivel) * 85);
+                svgContent += `
+                    <line x1="150" y1="${alturaY}" x2="850" y2="${alturaY}" stroke="#222222" stroke-width="1" stroke-dasharray="4,4"/>
+                    <text x="160" y="${alturaY - 8}" font-family='Montserrat' font-size='10' font-weight='700'>${fila.nombre.toUpperCase()}</text>
+                `;
 
-                if(fila.alineacion === 'Izquierda') lineaDom.style.justifyContent = 'flex-start';
-                if(fila.alineacion === 'Derecha') lineaDom.style.justifyContent = 'flex-end';
+                const elementosFila = Math.max(fila.sillas, fila.atriles);
+                let inicioX = 200, finX = 800;
+                if(fila.alineacion === 'Izquierda') finX = 500;
+                if(fila.alineacion === 'Derecha') inicioX = 500;
 
-                const totalElementos = Math.max(fila.sillas, fila.atriles);
-                for(let i=0; i<totalElementos; i++) {
-                    const unitGroup = document.createElement('div');
-                    unitGroup.className = "setup-group";
+                const pasoX = elementosFila > 1 ? (finX - inicioX) / (elementosFila - 1) : 0;
 
-                    if(i < fila.sillas) unitGroup.appendChild(document.createElement('div')).className = "icon-chair";
-                    if(i < fila.atriles) unitGroup.appendChild(document.createElement('div')).className = "icon-stand";
-
-                    if(i === 0) {
-                        const lbl = document.createElement('div');
-                        lbl.className = "group-label";
-                        lbl.innerText = fila.nombre;
-                        unitGroup.appendChild(lbl);
+                for(let i = 0; i < elementosFila; i++) {
+                    const posX = elementosFila > 1 ? (inicioX + (pasoX * i)) : 500;
+                    svgContent += `<g transform="translate(${posX}, ${alturaY})">`;
+                    if(i < fila.sillas) {
+                        svgContent += `
+                            <rect x="-8" y="-8" width="16" height="16" rx="2" fill="#ffffff" stroke="#000000" stroke-width="1.5" />
+                            <line x1="-6" y1="-8" x2="6" y2="-8" stroke="#000000" stroke-width="2.5" />
+                        `;
                     }
-                    lineaDom.appendChild(unitGroup);
+                    if(i < fila.atriles) {
+                        svgContent += `
+                            <line x1="-7" y1="-14" x2="7" y2="-14" stroke="#000000" stroke-width="2" />
+                        `;
+                    }
+                    svgContent += `</g>`;
                 }
-                document.getElementById('render-arcos-area').appendChild(lineaDom);
             }
         });
 
-        // 3. Renderizar la Tabla Consolidada idéntica al diseño técnico solicitado
+        svg.innerHTML = svgContent;
+
+        // Inyección de Filas en la Tabla Consolidada
         const tbody = document.getElementById('tabla-totales-body');
         tbody.innerHTML = `
             <tr>
                 <td><strong>Sillas de Músico</strong></td>
-                <td style="text-align:center; font-weight:700;">${totalSillas}</td>
-                <td>Sillas estándar para instrumentistas sinfónicos. Distribución: ${descSillas.join(', ') || 'Ninguna sección.'}</td>
+                <td style="font-weight:700; font-size:14px;">${totalSillas}</td>
+                <td>Sillas de músico sinfónico estándar. Distribución por filas: ${desgloseSillas.join(', ') || 'Ninguna.'}</td>
             </tr>
             <tr>
                 <td><strong>Atriles Sinfónicos</strong></td>
-                <td style="text-align:center; font-weight:700;">${totalAtriles}</td>
-                <td>Atriles metálicos pesados regulables. Distribución: ${descAtriles.join(', ') || 'Ninguna sección.'}</td>
+                <td style="font-weight:700; font-size:14px;">${totalAtriles}</td>
+                <td>Atriles pesados de lectura. Distribución por filas: ${desgloseAtriles.join(', ') || 'Ninguna.'}</td>
             </tr>
-            ${descPercusion.length > 0 ? `
+            ${desglosePercusion.length > 0 ? `
             <tr>
-                <td><strong>Estaciones de Percusión</strong></td>
-                <td style="text-align:center; font-weight:700;">${descPercusion.length}</td>
-                <td>Módulos de trabajo independientes al fondo del escenario: ${descPercusion.join(' | ')}</td>
+                <td><strong>Set de Percusión</strong></td>
+                <td style="font-weight:700; font-size:14px;">${desglosePercusion.length}</td>
+                <td>Instrumentación en bahía trasera: ${desglosePercusion.join(' | ')}</td>
             </tr>` : ''}
         `;
     }
 
-    // Inicializar el sistema al cargar
+    // Encendido Automático del Sistema
     actualizarTodo();
 </script>
 
