@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RIDER MANAGER v1.1</title>
+    <title>RIDER MANAGER v1.2</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@
         }
 
         .container {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -44,14 +44,14 @@
 
         header h1 {
             margin: 0;
-            font-size: 26px;
+            font-size: 24px;
             text-transform: uppercase;
             font-weight: 700;
             letter-spacing: 0.5px;
         }
 
         .version {
-            font-size: 14px;
+            font-size: 13px;
             background: var(--primary);
             color: white;
             padding: 4px 10px;
@@ -66,18 +66,18 @@
             font-weight: 600;
             padding: 8px;
             border: 1px dashed var(--border);
-            width: 350px;
+            width: 380px;
             text-transform: uppercase;
         }
 
-        /* Diseño Adaptable (Responsive Grid) */
+        /* Diseño de la aplicación */
         .main-layout {
             display: grid;
-            grid-template-columns: 400px 1fr;
+            grid-template-columns: 420px 1fr;
             gap: 25px;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
             .main-layout {
                 grid-template-columns: 1fr;
             }
@@ -94,7 +94,7 @@
 
         .panel h2 {
             margin-top: 0;
-            font-size: 16px;
+            font-size: 15px;
             text-transform: uppercase;
             border-bottom: 2px solid var(--primary);
             padding-bottom: 8px;
@@ -109,7 +109,7 @@
             display: block;
             font-weight: 600;
             margin-bottom: 6px;
-            font-size: 13px;
+            font-size: 12px;
             text-transform: uppercase;
         }
 
@@ -140,11 +140,6 @@
             cursor: pointer;
             font-size: 12px;
             font-weight: 500;
-            text-transform: none;
-        }
-
-        .radio-label input, .checkbox-label input {
-            margin: 0;
         }
 
         .btn-primary {
@@ -159,22 +154,13 @@
             width: 100%;
             border-radius: 4px;
             letter-spacing: 0.5px;
-            transition: background 0.2s;
         }
 
-        .btn-primary:hover {
-            background: #333333;
-        }
+        .btn-primary:hover { background: #333333; }
+        .btn-export { background: #2e7d32; margin-top: 10px; }
+        .btn-export:hover { background: #1b5e20; }
 
-        .btn-export {
-            background: #2e7d32;
-            margin-top: 10px;
-        }
-        .btn-export:hover {
-            background: #1b5e20;
-        }
-
-        /* Lista de filas añadidas con opción de editar/borrar */
+        /* Lista de control izquierda */
         .fila-item {
             display: flex;
             justify-content: space-between;
@@ -184,15 +170,7 @@
             font-size: 13px;
         }
 
-        .fila-info {
-            flex-grow: 1;
-        }
-
-        .fila-actions {
-            display: flex;
-            gap: 5px;
-        }
-
+        .fila-actions { display: flex; gap: 5px; }
         .btn-action {
             padding: 4px 8px;
             font-size: 11px;
@@ -203,90 +181,252 @@
             font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
         }
-
         .btn-edit { background: var(--accent); color: white; }
         .btn-del { background: var(--danger); color: white; }
 
-        /* Contenedor del Escenario y Vista Previa del Rider */
-        .stage-preview {
+        /* ESTRUCTURA DEL DOCUMENTO TÉCNICO EXPORTABLE */
+        .document-container {
             background: #ffffff;
-            border: 2px solid var(--primary);
-            padding: 30px;
-            border-radius: 8px;
-            min-height: 500px;
+            border: 1px solid #000000;
+            padding: 40px;
+            box-sizing: border-box;
+            min-height: 850px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
-        .stage-title {
+        .doc-header-title {
             text-align: center;
-            text-transform: uppercase;
+            font-size: 26px;
             font-weight: 700;
-            font-size: 22px;
-            margin-bottom: 20px;
+            text-transform: uppercase;
+            margin: 0 0 5px 0;
+            letter-spacing: 1px;
         }
 
-        /* Representación abstracta del plano de filas */
-        .stage-canvas {
-            border: 1px dashed var(--border);
-            flex-grow: 1;
+        .doc-header-subtitle {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 10px;
+        }
+
+        /* DISEÑO DE ESCENARIO GEOMÉTRICO AUTÉNTICO */
+        .stage-box {
+            border: 2px solid #000000;
+            position: relative;
+            height: 480px;
+            background: #ffffff;
             border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .podium {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 40px;
+            border: 2px solid #000000;
+            background: #ffffff;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            background: #fafafa;
-            gap: 15px;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            z-index: 10;
         }
 
-        .stage-row-visual {
+        /* Zona fija de percusión al fondo */
+        .percussion-bay {
+            position: absolute;
+            top: 10px;
+            left: 5%;
             width: 90%;
-            padding: 10px;
-            background: #ffffff;
-            border: 1px solid var(--primary);
-            border-radius: 20px;
+            height: 90px;
+            border: 1px dashed #000000;
+            background: #fafafa;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        .percussion-bay-title {
+            font-size: 10px;
+            font-weight: 700;
             text-align: center;
-            font-size: 12px;
+            text-transform: uppercase;
+            border-bottom: 1px dashed #000000;
+            padding-bottom: 2px;
+            margin-bottom: 5px;
+        }
+
+        .percussion-stations-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .percussion-card {
+            border: 1px solid #000000;
+            background: #ffffff;
+            padding: 4px 8px;
+            font-size: 10px;
             font-weight: 600;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .stage-row-visual.forma-recta {
             border-radius: 4px;
+            text-align: center;
         }
 
-        .summary-table {
+        /* Arcos matemáticos concéntricos para filas de orquesta/banda */
+        .arc-row {
+            position: absolute;
+            bottom: -50px; /* Punto de pivote centralizado abajo */
+            left: 50%;
+            transform: translateX(-50%);
+            border: 1px dashed #888888;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            box-sizing: border-box;
+            pointer-events: none;
+        }
+
+        /* Variación de filas rectas */
+        .straight-row-container {
+            position: absolute;
+            left: 5%;
+            width: 90%;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            border-top: 1px dashed #888888;
+            padding-top: 8px;
+        }
+
+        /* Render de Sillas y Atriles Individuales */
+        .setup-group {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            position: relative;
+        }
+
+        .icon-chair {
+            width: 14px;
+            height: 14px;
+            border: 1px solid #000000;
+            background: #e1e1e1;
+            border-radius: 2px;
+            position: relative;
+        }
+        .icon-chair::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: 1px;
+            width: 10px;
+            height: 2px;
+            background: #000000;
+        }
+
+        .icon-stand {
+            width: 12px;
+            height: 3px;
+            background: #000000;
+            margin-top: 1px;
+            position: relative;
+        }
+        .icon-stand::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 5px;
+            width: 2px;
+            height: 2px;
+            background: #000000;
+            border-radius: 50%;
+        }
+
+        .group-label {
+            font-size: 8px;
+            font-weight: 700;
+            white-space: nowrap;
+            background: #ffffff;
+            padding: 0 2px;
+            position: absolute;
+            bottom: -12px;
+        }
+
+        /* Estructuras de tablas idénticas a la imagen técnica */
+        .doc-tables-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .technical-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
         }
 
-        .summary-table th, .summary-table td {
-            border: 1px solid var(--border);
-            padding: 10px;
-            text-align: left;
-            font-size: 13px;
+        .technical-table th, .technical-table td {
+            border: 1px solid #000000;
+            padding: 8px 12px;
+            font-size: 12px;
+            color: #000000;
         }
 
-        .summary-table th {
-            background: #eeeeee;
+        .technical-table th {
+            background: #000000;
+            color: #ffffff;
             text-transform: uppercase;
             font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.5px;
         }
 
-        /* Créditos Sutiles */
-        footer {
-            margin-top: 30px;
+        .doc-footer {
+            margin-top: 35px;
             text-align: center;
             font-size: 11px;
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: 1px;
-            color: #666666;
+            color: #111111;
             text-transform: uppercase;
-            border-top: 1px solid var(--border);
-            padding-top: 15px;
+            border-top: 2px solid #000000;
+            padding-top: 12px;
+        }
+
+        /* ESTILOS ESTRICTOS DE IMPRESIÓN/EXPORTACIÓN */
+        @media print {
+            body {
+                background: #ffffff;
+                padding: 0;
+            }
+            .sidebar, header {
+                display: none !important;
+            }
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            .document-container {
+                border: none;
+                padding: 0;
+                width: 100%;
+            }
+            .stage-box {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
         }
     </style>
 </head>
@@ -294,148 +434,171 @@
 
 <div class="container">
     <header>
-        <h1>RIDER MANAGER <span class="version">v1.1</span></h1>
-        <input type="text" id="nombre-agrupacion" class="input-agrupacion" value="BANDA SINFÓNICA DE MUESTRA" oninput="actualizarTitulo()">
+        <h1>RIDER MANAGER <span class="version">v1.2</span></h1>
+        <input type="text" id="nombre-agrupacion" class="input-agrupacion" value="BANDA SINFÓNICA DE MUESTRA" oninput="actualizarTodo()">
     </header>
 
     <div class="main-layout">
         <div class="sidebar">
             <div class="panel">
-                <h2 id="form-title">Añadir Fila / Sección</h2>
+                <h2 id="form-title">Configurar Fila Instrumental</h2>
                 <input type="hidden" id="edit-index" value="-1">
                 
                 <div class="form-group">
-                    <label for="nombre-seccion">Nombre de la Sección (Ej: Clarinetes 1º)</label>
+                    <label for="nombre-seccion">Nombre Personalizado (Ej: Clarinetes 1º o Percusión 1)</label>
                     <input type="text" id="nombre-seccion" placeholder="Escribe el nombre a tu gusto...">
                 </div>
 
                 <div class="form-group">
-                    <label>Tipo de Geometría</label>
+                    <label>Ubicación / Tipo de Fila</label>
                     <div class="radio-group">
-                        <label class="radio-label"><input type="radio" name="forma" value="semicirculo" checked> Semicírculo</label>
-                        <label class="radio-label"><input type="radio" name="forma" value="recta"> Recta (Orquesta/BigBand)</label>
+                        <label class="radio-label"><input type="radio" name="tipo-fila" value="arco" checked onclick="toggleSeccionCampos()"> Arco Concéntrico</label>
+                        <label class="radio-label"><input type="radio" name="tipo-fila" value="recta" onclick="toggleSeccionCampos()"> Fila Recta</label>
+                        <label class="radio-label"><input type="radio" name="tipo-fila" value="percursion" onclick="toggleSeccionCampos()"> Bloque de Percusión</label>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Alineación en Escenario</label>
-                    <div class="radio-group">
-                        <label class="radio-label"><input type="radio" name="alineacion" value="Centro" checked> Centro</label>
-                        <label class="radio-label"><input type="radio" name="alineacion" value="Izquierda"> Izquierda</label>
-                        <label class="radio-label"><input type="radio" name="alineacion" value="Derecha"> Derecha</label>
+                <div id="opciones-arco-recta">
+                    <div class="form-group">
+                        <label for="nivel-arco">Fila / Profundidad (1 al 4)</label>
+                        <select id="nivel-arco">
+                            <option value="1">Fila 1 (Cercana al director)</option>
+                            <option value="2">Fila 2</option>
+                            <option value="3">Fila 3</option>
+                            <option value="4">Fila 4 (Lejana del director)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Alineación Lateral</label>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" name="alineacion" value="Centro" checked> Centro</label>
+                            <label class="radio-label"><input type="radio" name="alineacion" value="Izquierda"> Izquierda</label>
+                            <label class="radio-label"><input type="radio" name="alineacion" value="Derecha"> Derecha</label>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label Zor for="cant-sillas">Cantidad de Sillas (Músicos)</label>
-                    <input type="number" id="cant-sillas" min="0" value="4">
-                </div>
-
-                <div class="form-group">
-                    <label for="cant-atriles">Cantidad de Atriles</label>
-                    <input type="number" id="cant-atriles" min="0" value="2">
-                </div>
-
-                <div class="form-group" id="bloque-percusión-checks">
-                    <label>Instrumentos de Percución (Opcional)</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-label"><input type="checkbox" id="p-timbales"> Timbales</label>
-                        <label class="checkbox-label"><input type="checkbox" id="p-placas"> Placas</label>
-                        <label class="checkbox-label"><input type="checkbox" id="p-tambores"> Tambores/Bombo</label>
+                <div id="cantidades-mobiliario">
+                    <div class="form-group">
+                        <label for="cant-sillas">Cantidad de Sillas</label>
+                        <input type="number" id="cant-sillas" min="0" value="4">
+                    </div>
+                    <div class="form-group">
+                        <label for="cant-atriles">Cantidad de Atriles</label>
+                        <input type="number" id="cant-atriles" min="0" value="2">
                     </div>
                 </div>
 
-                <button class="btn-primary" id="btn-guardar-fila" onclick="guardarFila()">Agregar al Escenario</button>
-                <button class="btn-primary btn-export" onclick="window.print()">Exportar Rider (PDF)</button>
+                <div id="opciones-percursion-checks" style="display:none;">
+                    <div class="form-group">
+                        <label>Instrumentos en esta Estación</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label"><input type="checkbox" id="p-timbales"> Timbales</label>
+                            <label class="checkbox-label"><input type="checkbox" id="p-marimba"> Marimba/Placas</label>
+                            <label class="checkbox-label"><input type="checkbox" id="p-bombo"> Bombo/Tambor</label>
+                            <label class="checkbox-label"><input type="checkbox" id="p-platos"> Platos</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-primary" id="btn-guardar-fila" onclick="guardarFila()">Aplicar al Escenario</button>
+                <button class="btn-primary btn-export" onclick="window.print()">Exportar Rider Imprimible</button>
             </div>
 
             <div class="panel">
-                <h2>Secciones en Escenario</h2>
-                <div id="lista-filas-agregadas">
-                    </div>
+                <h2>Secciones Agregadas</h2>
+                <div id="lista-filas-agregadas"></div>
             </div>
         </div>
 
-        <div class="stage-preview" id="rider-impresion">
+        <div class="document-container" id="documento-impresion">
             <div>
-                <div class="stage-title" id="preview-titulo">BANDA SINFÓNICA DE MUESTRA</div>
-                <div style="text-align: center; font-size: 13px; margin-bottom: 20px; font-weight: 500;">PLANO DE ESCENARIO Y REQUERIMIENTOS</div>
+                <h1 class="doc-header-title" id="doc-titulo">BANDA SINFÓNICA DE MUESTRA</h1>
+                <div class="doc-header-subtitle">Plano de Escenario y Requerimientos de Mobiliario</div>
                 
-                <div class="stage-canvas" id="canvas-escenario">
-                    <div style="color: #999; font-size: 13px;" id="placeholder-text">El escenario está vacío. Añade secciones instrumentales.</div>
+                <div class="stage-box" id="stage-box-escenario">
+                    <div class="podium">Director</div>
+                    
+                    <div class="percussion-bay">
+                        <div class="percussion-bay-title">Zona de Percusión</div>
+                        <div class="percussion-stations-container" id="render-percusión-area"></div>
+                    </div>
+
+                    <div id="render-arcos-area"></div>
                 </div>
             </div>
 
-            <div>
-                <table class="summary-table">
+            <div class="doc-tables-grid">
+                <table class="technical-table">
                     <thead>
                         <tr>
-                            <th>Requerimiento Técnico</th>
-                            <th>Cantidad Total</th>
-                            <th>Detalle de Secciones</th>
+                            <th style="width: 25%;">Artículo</th>
+                            <th style="width: 15%; text-align: center;">Cantidad</th>
+                            <th style="width: 60%;">Descripción / Distribución por Secciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Sillas de Orquesta</strong></td>
-                            <td id="total-sillas">0</td>
-                            <td id="detalle-sillas">-</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Atriles Metálicos Pesados</strong></td>
-                            <td id="total-atriles">0</td>
-                            <td id="detalle-atriles">-</td>
-                        </tr>
-                    </tbody>
+                    <tbody id="tabla-totales-body">
+                        </tbody>
                 </table>
+            </div>
 
-                <footer>
-                    PANDEMIA PRODUCCIONES • Riders para Agrupaciones 2026
-                </footer>
+            <div class="doc-footer">
+                PANDEMIA PRODUCCIONES • Riders para Agrupaciones 2026
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    // Memoria volátil de la sesión (Estructura de datos central)
     let listaFilas = [];
 
-    function actualizarTitulo() {
-        const nombre = document.getElementById('nombre-agrupacion').value;
-        document.getElementById('preview-titulo').innerText = nombre ? nombre : "RIDER TÉCNICO";
+    function toggleSeccionCampos() {
+        const tipo = document.querySelector('input[name="tipo-fila"]:checked').value;
+        const divArcoRecta = document.getElementById('opciones-arco-recta');
+        const divMobiliario = document.getElementById('cantidades-mobiliario');
+        const divPercusion = document.getElementById('opciones-percursion-checks');
+
+        if(tipo === 'percursion') {
+            divArcoRecta.style.display = 'none';
+            divMobiliario.style.display = 'none';
+            divPercusion.style.display = 'block';
+        } else {
+            divArcoRecta.style.display = 'block';
+            divMobiliario.style.display = 'block';
+            divPercusion.style.display = 'none';
+        }
     }
 
     function guardarFila() {
-        const nombre = document.getElementById('nombre-seccion').value.trim() || "Sección Sin Nombre";
-        const forma = document.querySelector('input[name="forma"]:checked').value;
+        const nombre = document.getElementById('nombre-seccion').value.trim() || "Sección";
+        const tipo = document.querySelector('input[name="tipo-fila"]:checked').value;
+        const sillas = tipo === 'percursion' ? 0 : (parseInt(document.getElementById('cant-sillas').value) || 0);
+        const atriles = tipo === 'percursion' ? 0 : (parseInt(document.getElementById('cant-atriles').value) || 0);
+        const nivel = document.getElementById('nivel-arco').value;
         const alineacion = document.querySelector('input[name="alineacion"]:checked').value;
-        const sillas = parseInt(document.getElementById('cant-sillas').value) || 0;
-        const atriles = parseInt(document.getElementById('cant-atriles').value) || 0;
-        
-        // Recolección de percusión
+
         let perc_instrumentos = [];
-        if(document.getElementById('p-timbales').checked) perc_instrumentos.push("Timbales");
-        if(document.getElementById('p-placas').checked) perc_instrumentos.push("Placas");
-        if(document.getElementById('p-tambores').checked) perc_instrumentos.push("Tambores/Bombo");
+        if(tipo === 'percursion') {
+            if(document.getElementById('p-timbales').checked) perc_instrumentos.push("Timbales");
+            if(document.getElementById('p-marimba').checked) perc_instrumentos.push("Marimba/Placas");
+            if(document.getElementById('p-bombo').checked) perc_instrumentos.push("Bombo/Tambor");
+            if(document.getElementById('p-platos').checked) perc_instrumentos.push("Platos");
+        }
 
         const editIndex = parseInt(document.getElementById('edit-index').value);
+        const datos = { nombre, tipo, sillas, atriles, nivel, alineacion, perc_instrumentos };
 
-        const datosFila = { nombre, forma, alineacion, sillas, atriles, perc_instrumentos };
-
-        if (editIndex === -1) {
-            // Añadir nueva fila
-            listaFilas.push(datosFila);
+        if(editIndex === -1) {
+            listaFilas.push(datos);
         } else {
-            // Guardar edición
-            listaFilas[editIndex] = datosFila;
+            listaFilas[editIndex] = datos;
             document.getElementById('edit-index').value = "-1";
-            document.getElementById('form-title').innerText = "Añadir Fila / Sección";
-            document.getElementById('btn-guardar-fila').innerText = "Agregar al Escenario";
+            document.getElementById('form-title').innerText = "Configurar Fila Instrumental";
+            document.getElementById('btn-guardar-fila').innerText = "Aplicar al Escenario";
         }
 
         resetFormulario();
-        renderizarTodo();
+        actualizarTodo();
     }
 
     function resetFormulario() {
@@ -443,110 +606,184 @@
         document.getElementById('cant-sillas').value = "4";
         document.getElementById('cant-atriles').value = "2";
         document.getElementById('p-timbales').checked = false;
-        document.getElementById('p-placas').checked = false;
-        document.getElementById('p-tambores').checked = false;
+        document.getElementById('p-marimba').checked = false;
+        document.getElementById('p-bombo').checked = false;
+        document.getElementById('p-platos').checked = false;
     }
 
     function eliminarFila(index) {
         listaFilas.splice(index, 1);
-        renderizarTodo();
+        actualizarTodo();
     }
 
     function iniciarEdicion(index) {
         const fila = listaFilas[index];
         document.getElementById('nombre-seccion').value = fila.nombre;
-        document.getElementById('cant-sillas').value = fila.sillas;
-        document.getElementById('cant-atriles').value = fila.atriles;
-        
-        document.querySelector(`input[name="forma"][value="${fila.forma}"]`).checked = true;
-        document.querySelector(`input[name="alineacion"][value="${fila.alineacion}"]`).checked = true;
-        
-        document.getElementById('p-timbales').checked = fila.perc_instrumentos.includes("Timbales");
-        document.getElementById('p-placas').checked = fila.perc_instrumentos.includes("Placas");
-        document.getElementById('p-tambores').checked = fila.perc_instrumentos.includes("Tambores/Bombo");
+        document.querySelector(`input[name="tipo-fila"][value="${fila.tipo}"]`).checked = true;
+        toggleSeccionCampos();
 
-        document.getElementById('edit-index').value = index;
-        document.getElementById('form-title').innerText = "Editando Sección";
-        document.getElementById('btn-guardar-fila').innerText = "Actualizar Sección";
-    }
-
-    function renderizarTodo() {
-        const contenedorLista = document.getElementById('lista-filas-agregadas');
-        const contenedorEscenario = document.getElementById('canvas-escenario');
-        const placeholder = document.getElementById('placeholder-text');
-
-        // Limpiar contenedores
-        contenedorLista.innerHTML = "";
-        contenedorEscenario.innerHTML = "";
-
-        if (listaFilas.length === 0) {
-            placeholder.style.display = "block";
-            contenedorEscenario.appendChild(placeholder);
-            document.getElementById('total-sillas').innerText = "0";
-            document.getElementById('total-atriles').innerText = "0";
-            document.getElementById('detalle-sillas').innerText = "-";
-            document.getElementById('detalle-atriles').innerText = "-";
-            return;
+        if(fila.tipo !== 'percursion') {
+            document.getElementById('cant-sillas').value = fila.sillas;
+            document.getElementById('cant-atriles').value = fila.atriles;
+            document.getElementById('nivel-arco').value = fila.nivel;
+            document.querySelector(`input[name="alineacion"][value="${fila.alineacion}"]`).checked = true;
+        } else {
+            document.getElementById('p-timbales').checked = fila.perc_instrumentos.includes("Timbales");
+            document.getElementById('p-marimba').checked = fila.perc_instrumentos.includes("Marimba/Placas");
+            document.getElementById('p-bombo').checked = fila.perc_instrumentos.includes("Bombo/Tambor");
+            document.getElementById('p-platos').checked = fila.perc_instrumentos.includes("Platos");
         }
 
-        let sumaSillas = 0;
-        let sumaAtriles = 0;
-        let nombresSillas = [];
-        let nombresAtriles = [];
+        document.getElementById('edit-index').value = index;
+        document.getElementById('form-title').innerText = "Editando Fila";
+        document.getElementById('btn-guardar-fila').innerText = "Guardar Cambios";
+    }
+
+    function actualizarTodo() {
+        const nombreInput = document.getElementById('nombre-agrupacion').value.toUpperCase();
+        document.getElementById('doc-titulo').innerText = nombreInput || "RIDER TÉCNICO";
+
+        // Limpieza de capas
+        document.getElementById('lista-filas-agregadas').innerHTML = "";
+        document.getElementById('render-percusión-area').innerHTML = "";
+        document.getElementById('render-arcos-area').innerHTML = "";
+
+        let totalSillas = 0, totalAtriles = 0;
+        let descSillas = [], descAtriles = [], descPercusion = [];
+
+        // Radios de los arcos concéntricos fijos para simular las filas
+        const mapaRadios = { "1": 190, "2": 260, "3": 330, "4": 400 };
 
         listaFilas.forEach((fila, idx) => {
-            sumaSillas += fila.sillas;
-            sumaAtriles += fila.atriles;
-            if(fila.sillas > 0) nombresSillas.push(`${fila.nombre} (${fila.sillas})`);
-            if(fila.atriles > 0) nombresAtriles.push(`${fila.nombre} (${fila.atriles})`);
+            // Totales de hardware logístico
+            totalSillas += fila.sillas;
+            totalAtriles += fila.atriles;
+            if(fila.sillas > 0) descSillas.push(`${fila.nombre} (${fila.sillas})`);
+            if(fila.atriles > 0) descAtriles.push(`${fila.nombre} (${fila.atriles})`);
+            if(fila.tipo === 'percursion') descPercusion.push(`${fila.nombre}: [${fila.perc_instrumentos.join(', ')}]`);
 
-            // 1. Renderizar en el panel de control izquierdo
+            // 1. Agregar a la lista de administración lateral
             const item = document.createElement('div');
             item.className = "fila-item";
             item.innerHTML = `
-                <div class="fila-info">
+                <div>
                     <strong>${fila.nombre}</strong><br>
-                    <small>${fila.sillas} Sillas | ${fila.atriles} Atriles | ${fila.alineacion} | ${fila.forma}</small>
+                    <small>${fila.tipo === 'percursion' ? 'Set Percusión' : fila.sillas+'S / '+fila.atriles+'A'}</small>
                 </div>
                 <div class="fila-actions">
                     <button class="btn-action btn-edit" onclick="iniciarEdicion(${idx})">Editar</button>
                     <button class="btn-action btn-del" onclick="eliminarFila(${idx})">X</button>
                 </div>
             `;
-            contenedorLista.appendChild(item);
+            document.getElementById('lista-filas-agregadas').appendChild(item);
 
-            // 2. Renderizar visualmente en el plano del escenario (Derecha)
-            const bloqueVisual = document.createElement('div');
-            bloqueVisual.className = `stage-row-visual forma-${fila.forma}`;
-            
-            // Tratamiento visual de los iconos e info interna de la fila
-            let stringVisual = `${fila.nombre.toUpperCase()} ➔ `;
-            
-            // Iconografía de Sillas (🪑)
-            if(fila.sillas > 0) stringVisual += ` 🪑x${fila.sillas}`;
-            // Iconografía de Atriles (🎼)
-            if(fila.atriles > 0) stringVisual += ` 🎼x${fila.atriles}`;
-            // Detalle de instrumentos si es estación de percusión
-            if(fila.perc_instrumentos.length > 0) {
-                stringVisual += ` [📦 Percusión: ${fila.perc_instrumentos.join(', ')}]`;
+            // 2. Renderización en Mapa de Escenario Geométrico
+            if(fila.tipo === 'percursion') {
+                const pCard = document.createElement('div');
+                pCard.className = "percussion-card";
+                pCard.innerHTML = `<strong>${fila.nombre.toUpperCase()}</strong><br>${fila.perc_instrumentos.join(' • ') || 'Vacío'}`;
+                document.getElementById('render-percusión-area').appendChild(pCard);
+            } 
+            else if(fila.tipo === 'arco') {
+                const radio = mapaRadios[fila.nivel];
+                const arcoDom = document.createElement('div');
+                arcoDom.className = "arc-row";
+                arcoDom.style.width = `${radio * 2}px`;
+                arcoDom.style.height = `${radio * 2}px`;
+                
+                // Distribuir objetos de forma equidistante en el arco
+                const totalElementos = Math.max(fila.sillas, fila.atriles);
+                let anguloInicio = 210; // Izquierda
+                let anguloFin = 330;    // Derecha
+                
+                if(fila.alineacion === 'Izquierda') { anguloInicio = 200; anguloFin = 260; }
+                if(fila.alineacion === 'Derecha') { anguloInicio = 280; anguloFin = 340; }
+
+                const paso = totalElementos > 1 ? (anguloFin - anguloInicio) / (totalElementos - 1) : 0;
+                const anguloCentralUnico = anguloInicio + (anguloFin - anguloInicio) / 2;
+
+                for(let i=0; i<totalElementos; i++) {
+                    const anguloActual = totalElementos > 1 ? (anguloInicio + (paso * i)) : anguloCentralUnico;
+                    const rad = anguloActual * (Math.PI / 180);
+                    
+                    // Coordenadas trigonométricas relativas al radio del arco
+                    const x = radio + radio * Math.cos(rad);
+                    const y = radio + radio * Math.sin(rad);
+
+                    const unitGroup = document.createElement('div');
+                    unitGroup.className = "setup-group";
+                    unitGroup.style.position = "absolute";
+                    unitGroup.style.left = `${x}px`;
+                    unitGroup.style.top = `${y}px`;
+                    unitGroup.style.transform = `translate(-50%, -50%) rotate(${anguloActual + 90}deg)`;
+
+                    if(i < fila.sillas) unitGroup.appendChild(document.createElement('div')).className = "icon-chair";
+                    if(i < fila.atriles) unitGroup.appendChild(document.createElement('div')).className = "icon-stand";
+                    
+                    if(i === 0) {
+                        const lbl = document.createElement('div');
+                        lbl.className = "group-label";
+                        lbl.innerText = fila.nombre;
+                        unitGroup.appendChild(lbl);
+                    }
+
+                    arcoDom.appendChild(unitGroup);
+                }
+                document.getElementById('render-arcos-area').appendChild(arcoDom);
             }
-            
-            stringVisual += ` | Posición: ${fila.alineacion}`;
-            bloqueVisual.innerText = stringVisual;
-            
-            // Ajustar margen o alineación simulada en base a la decisión del usuario
-            if(fila.alineacion === "Izquierda") bloqueVisual.style.marginRight = "auto";
-            if(fila.alineacion === "Derecha") bloqueVisual.style.marginLeft = "auto";
+            else if(fila.tipo === 'recta') {
+                const lineaDom = document.createElement('div');
+                lineaDom.className = "straight-row-container";
+                // Posicionamiento de altura en base al nivel seleccionado
+                lineaDom.style.top = `${450 - (fila.nivel * 75)}px`;
 
-            contenedorEscenario.appendChild(bloqueVisual);
+                if(fila.alineacion === 'Izquierda') lineaDom.style.justifyContent = 'flex-start';
+                if(fila.alineacion === 'Derecha') lineaDom.style.justifyContent = 'flex-end';
+
+                const totalElementos = Math.max(fila.sillas, fila.atriles);
+                for(let i=0; i<totalElementos; i++) {
+                    const unitGroup = document.createElement('div');
+                    unitGroup.className = "setup-group";
+
+                    if(i < fila.sillas) unitGroup.appendChild(document.createElement('div')).className = "icon-chair";
+                    if(i < fila.atriles) unitGroup.appendChild(document.createElement('div')).className = "icon-stand";
+
+                    if(i === 0) {
+                        const lbl = document.createElement('div');
+                        lbl.className = "group-label";
+                        lbl.innerText = fila.nombre;
+                        unitGroup.appendChild(lbl);
+                    }
+                    lineaDom.appendChild(unitGroup);
+                }
+                document.getElementById('render-arcos-area').appendChild(lineaDom);
+            }
         });
 
-        // Atualizar Totales de la Fila Logística
-        document.getElementById('total-sillas').innerText = sumaSillas;
-        document.getElementById('total-atriles').innerText = sumaAtriles;
-        document.getElementById('detalle-sillas').innerText = nombresSillas.join(', ') || "Ninguno";
-        document.getElementById('detalle-atriles').innerText = nombresAtriles.join(', ') || "Ninguno";
+        // 3. Renderizar la Tabla Consolidada idéntica al diseño técnico solicitado
+        const tbody = document.getElementById('tabla-totales-body');
+        tbody.innerHTML = `
+            <tr>
+                <td><strong>Sillas de Músico</strong></td>
+                <td style="text-align:center; font-weight:700;">${totalSillas}</td>
+                <td>Sillas estándar para instrumentistas sinfónicos. Distribución: ${descSillas.join(', ') || 'Ninguna sección.'}</td>
+            </tr>
+            <tr>
+                <td><strong>Atriles Sinfónicos</strong></td>
+                <td style="text-align:center; font-weight:700;">${totalAtriles}</td>
+                <td>Atriles metálicos pesados regulables. Distribución: ${descAtriles.join(', ') || 'Ninguna sección.'}</td>
+            </tr>
+            ${descPercusion.length > 0 ? `
+            <tr>
+                <td><strong>Estaciones de Percusión</strong></td>
+                <td style="text-align:center; font-weight:700;">${descPercusion.length}</td>
+                <td>Módulos de trabajo independientes al fondo del escenario: ${descPercusion.join(' | ')}</td>
+            </tr>` : ''}
+        `;
     }
+
+    // Inicializar el sistema al cargar
+    actualizarTodo();
 </script>
 
 </body>
