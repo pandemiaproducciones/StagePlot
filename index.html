@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RIDER MANAGER v1.8</title>
+    <title>RIDER MANAGER v1.9</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -61,12 +61,25 @@
 
         .input-agrupacion {
             font-family: 'Montserrat', sans-serif;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
-            padding: 8px;
-            border: 1px dashed var(--border);
-            width: 380px;
+            padding: 10px;
+            border: 2px dashed var(--accent);
+            width: 420px;
             text-transform: uppercase;
+            background: #f0f7ff;
+            color: var(--primary);
+        }
+        
+        .input-agrupacion::placeholder {
+            color: #666666;
+            font-weight: 500;
+        }
+
+        .input-agrupacion:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #ffffff;
         }
 
         .main-layout {
@@ -211,6 +224,15 @@
             padding-bottom: 8px;
         }
 
+        .doc-header-institucional {
+            display: block;
+            font-size: 11px;
+            font-weight: 400;
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+            color: #333333;
+        }
+
         .stage-box {
             border: 2px solid #000000;
             position: relative;
@@ -267,8 +289,8 @@
 
 <div class="container">
     <header>
-        <h1>RIDER MANAGER <span class="version">v1.8</span></h1>
-        <input type="text" id="nombre-agrupacion" class="input-agrupacion" value="BANDA SINFÓNICA DE MUESTRA" oninput="actualizarTitulo()">
+        <h1>RIDER MANAGER <span class="version">v1.9</span></h1>
+        <input type="text" id="nombre-agrupacion" class="input-agrupacion" placeholder="[ ESCRIBE AQUÍ EL NOMBRE DE LA BANDA ]" value="" oninput="actualizarTitulo()">
     </header>
 
     <div class="main-layout">
@@ -333,8 +355,11 @@
 
         <div class="document-container" id="documento-impresion">
             <div>
-                <h1 class="doc-header-title" id="doc-titulo">BANDA SINFÓNICA DE MUESTRA</h1>
-                <div class="doc-header-subtitle">Plano de Escenario y Requerimientos de Mobiliario</div>
+                <h1 class="doc-header-title" id="doc-titulo">[ NOMBRE DE LA AGRUPACIÓN ]</h1>
+                <div class="doc-header-subtitle">
+                    Plano de Escenario y Requerimientos de Mobiliario
+                    <span class="doc-header-institucional">Programa Departamental de Bandas de Caldas</span>
+                </div>
                 
                 <div class="stage-box">
                     <svg id="stage-svg" width="100%" height="100%" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff;"></svg>
@@ -364,10 +389,9 @@
 <script>
     let listaFilas = [];
 
-    // Función aislada para actualizar el título en vivo sin recargar el motor SVG
     function actualizarTitulo() {
-        const nombreInput = document.getElementById('nombre-agrupacion').value.toUpperCase();
-        document.getElementById('doc-titulo').innerText = nombreInput || "RIDER TÉCNICO";
+        const nombreInput = document.getElementById('nombre-agrupacion').value.trim().toUpperCase();
+        document.getElementById('doc-titulo').innerText = nombreInput || "[ NOMBRE DE LA AGRUPACIÓN ]";
     }
 
     function toggleCampos() {
@@ -415,6 +439,11 @@
         document.getElementById('cant-sillas').value = "8";
         document.getElementById('cant-atriles').value = "4";
         document.getElementById('cant-percusionistas').value = "4";
+        
+        // Retornar configuraciones visuales a sus valores por defecto más comunes
+        document.querySelector('input[name="tipo-fila"][value="arco"]').checked = true;
+        document.querySelector('input[name="alineacion"][value="Centro"]').checked = true;
+        toggleCampos();
     }
 
     function eliminarFila(index) {
@@ -442,7 +471,7 @@
     }
 
     function actualizarTodo() {
-        actualizarTitulo(); // Asegurar que el título esté en sincronía al redibujar
+        actualizarTitulo(); 
         document.getElementById('lista-filas-agregadas').innerHTML = "";
         
         const svg = document.getElementById('stage-svg');
@@ -459,7 +488,6 @@
 
         let totalSillas = 0, totalAtriles = 0, totalPercusionistas = 0;
         
-        // Arreglos para almacenar el texto que irá en la tabla de descripción
         let desgloseSillas = [];
         let desgloseAtriles = [];
         let desglosePercusion = [];
@@ -467,7 +495,6 @@
         let indiceVientoSucesivo = 0; 
 
         listaFilas.forEach((fila, idx) => {
-            // Clasificación y extracción de datos descriptivos
             if (fila.tipo === 'percursion') {
                 totalPercusionistas += fila.sillas;
                 if(fila.sillas > 0) desglosePercusion.push(`${fila.nombre}: ${fila.sillas} puestos`);
@@ -479,7 +506,6 @@
                 indiceVientoSucesivo++; 
             }
 
-            // Actualización del panel de administración lateral
             const item = document.createElement('div');
             item.className = "fila-item";
             item.innerHTML = `
@@ -504,7 +530,6 @@
             if(fila.tipo === 'percursion' && fila.sillas > 0) {
                 const posYPercusion = 450 - (profundidadActual * 70);
                 
-                // Texto separado de los iconos (aumentado a -25 para evitar colisiones)
                 svg.innerHTML += `<text x="400" y="${posYPercusion - 25}" font-family='Montserrat' font-size="8" font-weight="700" text-anchor="middle">${fila.nombre.toUpperCase()}</text>`;
 
                 const inicioX = 150;
@@ -585,11 +610,8 @@
             // 3. RENDER FILA RECTA
             else if(fila.tipo === 'recta') {
                 const posYSillas = 450 - (profundidadActual * 70);
-                
-                // ATRIL CORREGIDO: Aumentamos en +18px en Y para que se dibuje ABAJO (más cerca del director) en lugar de atrás
                 const posYAtriles = posYSillas + 18; 
 
-                // Título separado correctamente (-25 en Y para que quede arriba de la fila)
                 svg.innerHTML += `<text x="400" y="${posYSillas - 25}" font-family='Montserrat' font-size="8" font-weight="700" text-anchor="middle">${fila.nombre.toUpperCase()}</text>`;
 
                 let inicioX = 150;
@@ -618,8 +640,8 @@
                         const posX = fila.atriles > 1 ? (inicioX + (pasoAtriles * i)) : centroXUnico;
                         svg.innerHTML += `
                             <g transform="translate(${posX}, ${posYAtriles})">
-                                <line x1="-7" y1="0" x2="7" y2="0" stroke="#000000" stroke-width="2"/>
-                                <line x1="0" y1="0" x2="0" y2="5" stroke="#000000" stroke-width="1.2"/>
+                                <line x1="-7" y1="-2" x2="7" y2="-2" stroke="#000000" stroke-width="2"/>
+                                <line x1="0" y1="-2" x2="0" y2="3" stroke="#000000" stroke-width="1.2"/>
                             </g>
                         `;
                     }
@@ -629,7 +651,6 @@
 
         const totalAtrilesGlobal = totalAtriles + totalPercusionistas; 
 
-        // Insertar el desglose estructurado en la tabla inferior
         const tbody = document.getElementById('tabla-totales-body');
         tbody.innerHTML = `
             <tr>
