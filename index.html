@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RIDER MANAGER v1.3</title>
+    <title>RIDER MANAGER v1.4</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -121,14 +121,14 @@
             font-size: 14px;
         }
 
-        .radio-group, .checkbox-group {
+        .radio-group {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
             margin-top: 5px;
         }
 
-        .radio-label, .checkbox-label {
+        .radio-label {
             display: flex;
             align-items: center;
             gap: 5px;
@@ -181,7 +181,7 @@
         .btn-edit { background: var(--accent); color: white; }
         .btn-del { background: var(--danger); color: white; }
 
-        /* CONTENEDOR GRÁFICO ESTRICTO - ESTILO PLANO DE INGENIERÍA */
+        /* CONTENEDOR GRÁFICO - ESTILO PLANO DE INGENIERÍA CLEAN */
         .document-container {
             background: #ffffff;
             border: 2px solid #000000;
@@ -211,7 +211,6 @@
             padding-bottom: 8px;
         }
 
-        /* Lienzo del plano */
         .stage-box {
             border: 2px solid #000000;
             position: relative;
@@ -221,7 +220,6 @@
             margin-bottom: 20px;
         }
 
-        /* Requerimientos totales estilo la imagen de muestra */
         .technical-table {
             width: 100%;
             border-collapse: collapse;
@@ -269,7 +267,7 @@
 
 <div class="container">
     <header>
-        <h1>RIDER MANAGER <span class="version">v1.3</span></h1>
+        <h1>RIDER MANAGER <span class="version">v1.4</span></h1>
         <input type="text" id="nombre-agrupacion" class="input-agrupacion" value="BANDA SINFÓNICA DE MUESTRA" oninput="actualizarTodo()">
     </header>
 
@@ -280,7 +278,7 @@
                 <input type="hidden" id="edit-index" value="-1">
                 
                 <div class="form-group">
-                    <label for="nombre-seccion">Nombre de la Fila (Ej: FILA 1 (Madera-Oboe, Flauta))</label>
+                    <label for="nombre-seccion">Nombre de la Fila (Ej: FILA 1 (Madera) o Percusión General)</label>
                     <input type="text" id="nombre-seccion" placeholder="Escribe la etiqueta de la fila...">
                 </div>
 
@@ -289,18 +287,18 @@
                     <div class="radio-group">
                         <label class="radio-label"><input type="radio" name="tipo-fila" value="arco" checked onclick="toggleCampos()"> Arco Concéntrico</label>
                         <label class="radio-label"><input type="radio" name="tipo-fila" value="recta" onclick="toggleCampos()"> Fila Recta</label>
-                        <label class="radio-label"><input type="radio" name="tipo-fila" value="percursion" onclick="toggleCampos()"> Zona de Percusión</label>
+                        <label class="radio-label"><input type="radio" name="tipo-fila" value="percursion" onclick="toggleCampos()"> Sección de Percusión</label>
                     </div>
                 </div>
 
                 <div id="opciones-geometria">
                     <div class="form-group">
-                        <label for="nivel-arco">Radio / Distancia (1 interno al 4 externo)</label>
+                        <label for="nivel-arco">Fila / Profundidad (1 interna al 4 externa)</label>
                         <select id="nivel-arco">
-                            <option value="1">Arco 1 (Cercano)</option>
-                            <option value="2">Arco 2</option>
-                            <option value="3">Arco 3</option>
-                            <option value="4">Arco 4 (Lejano)</option>
+                            <option value="1">Fila 1 (Cercana)</option>
+                            <option value="2">Fila 2</option>
+                            <option value="3">Fila 3</option>
+                            <option value="4">Fila 4 (Lejana)</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -313,7 +311,7 @@
                     </div>
                 </div>
 
-                <div id="cantidades-mobiliario">
+                <div id="cantidades-vientos">
                     <div class="form-group">
                         <label for="cant-sillas">Número de Sillas</label>
                         <input type="number" id="cant-sillas" min="0" value="8">
@@ -324,15 +322,11 @@
                     </div>
                 </div>
 
-                <div id="opciones-percursion" style="display:none;">
+                <div id="cantidades-percursion" style="display:none;">
                     <div class="form-group">
-                        <label>Instrumentos a Dibujar en Zona Alta</label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-label"><input type="checkbox" id="p-timbales"> Timbales</label>
-                            <label class="checkbox-label"><input type="checkbox" id="p-marimba"> Marimba</label>
-                            <label class="checkbox-label"><input type="checkbox" id="p-bombo"> Bombo</label>
-                            <label class="checkbox-label"><input type="checkbox" id="p-platos"> Platos</label>
-                        </div>
+                        <label for="cant-percusionistas">Cantidad de Músicos / Puestos de Percusión</label>
+                        <input type="number" id="cant-percusionistas" min="0" value="4">
+                        <small style="color:#666; display:block; margin-top:4px;">* Se agregará automáticamente un atril individual para cada uno.</small>
                     </div>
                 </div>
 
@@ -382,28 +376,30 @@
     function toggleCampos() {
         const tipo = document.querySelector('input[name="tipo-fila"]:checked').value;
         document.getElementById('opciones-geometria').style.display = (tipo === 'percursion') ? 'none' : 'block';
-        document.getElementById('cantidades-mobiliario').style.display = (tipo === 'percursion') ? 'none' : 'block';
-        document.getElementById('opciones-percursion').style.display = (tipo === 'percursion') ? 'block' : 'none';
+        document.getElementById('cantidades-vientos').style.display = (tipo === 'percursion') ? 'none' : 'block';
+        document.getElementById('cantidades-percursion').style.display = (tipo === 'percursion') ? 'block' : 'none';
     }
 
     function guardarFila() {
         const nombre = document.getElementById('nombre-seccion').value.trim() || "Fila Instrumental";
         const tipo = document.querySelector('input[name="tipo-fila"]:checked').value;
-        const sillas = tipo === 'percursion' ? 0 : (parseInt(document.getElementById('cant-sillas').value) || 0);
-        const atriles = tipo === 'percursion' ? 0 : (parseInt(document.getElementById('cant-atriles').value) || 0);
-        const nivel = document.getElementById('nivel-arco').value;
+        
+        let sillas = 0;
+        let atriles = 0;
+        let nivel = document.getElementById('nivel-arco').value;
         const alineacion = document.querySelector('input[name="alineacion"]:checked').value;
 
-        let perc_instrumentos = [];
-        if(tipo === 'percursion') {
-            if(document.getElementById('p-timbales').checked) perc_instrumentos.push("Timbales");
-            if(document.getElementById('p-marimba').checked) perc_instrumentos.push("Marimba");
-            if(document.getElementById('p-bombo').checked) perc_instrumentos.push("Bombo");
-            if(document.getElementById('p-platos').checked) perc_instrumentos.push("Platos");
+        if (tipo === 'percursion') {
+            sillas = parseInt(document.getElementById('cant-percusionistas').value) || 0;
+            atriles = sillas; // Regla de negocio: 1 atril individual automático por percusionista
+            nivel = "0";      // Marcador dinámico para el cálculo posterior
+        } else {
+            sillas = parseInt(document.getElementById('cant-sillas').value) || 0;
+            atriles = parseInt(document.getElementById('cant-atriles').value) || 0;
         }
 
         const editIndex = parseInt(document.getElementById('edit-index').value);
-        const datos = { nombre, tipo, sillas, atriles, nivel, alineacion, perc_instrumentos };
+        const datos = { nombre, tipo, sillas, atriles, nivel, alineacion };
 
         if(editIndex === -1) {
             listaFilas.push(datos);
@@ -422,10 +418,7 @@
         document.getElementById('nombre-seccion').value = "";
         document.getElementById('cant-sillas').value = "8";
         document.getElementById('cant-atriles').value = "4";
-        document.getElementById('p-timbales').checked = false;
-        document.getElementById('p-marimba').checked = false;
-        document.getElementById('p-bombo').checked = false;
-        document.getElementById('p-platos').checked = false;
+        document.getElementById('cant-percusionistas').value = "4";
     }
 
     function eliminarFila(index) {
@@ -445,10 +438,7 @@
             document.getElementById('nivel-arco').value = fila.nivel;
             document.querySelector(`input[name="alineacion"][value="${fila.alineacion}"]`).checked = true;
         } else {
-            document.getElementById('p-timbales').checked = fila.perc_instrumentos.includes("Timbales");
-            document.getElementById('p-marimba').checked = fila.perc_instrumentos.includes("Marimba");
-            document.getElementById('p-bombo').checked = fila.perc_instrumentos.includes("Bombo");
-            document.getElementById('p-platos').checked = fila.perc_instrumentos.includes("Platos");
+            document.getElementById('cant-percusionistas').value = fila.sillas;
         }
 
         document.getElementById('edit-index').value = index;
@@ -456,47 +446,63 @@
         document.getElementById('btn-guardar-fila').innerText = "Guardar Cambios";
     }
 
-    // GENERADOR ARQUITECTÓNICO DEL LIENZO SVG
     function actualizarTodo() {
         const nombreInput = document.getElementById('nombre-agrupacion').value.toUpperCase();
         document.getElementById('doc-titulo').innerText = nombreInput || "RIDER TÉCNICO";
 
         document.getElementById('lista-filas-agregadas').innerHTML = "";
         const svg = document.getElementById('stage-svg');
-        svg.innerHTML = ""; // Reinicio total del plano
+        svg.innerHTML = ""; 
 
-        // DIBUJAR ESTRUCTURA BASE FIJA DEL ESCENARIO (Arcos guía y Líneas de la Zona de Percusión)
-        const centerX = 400; // Centro matemático del plano
-        const centerY = 500; // Origen del vértice inferior
-        const radiosArcos = { "1": 150, "2": 220, "3": 290, "4": 360 };
+        const centerX = 400; 
+        const centerY = 500; 
 
-        // Caja perimetral exterior sutil del semicírculo de la banda
-        let baseLayout = `
-            <path d="M 100 80 L 700 80 L 750 140 L 50 140 Z" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3"/>
-            <text x="400" y="72" font-family='Montserrat' font-size="11" font-weight="700" text-anchor="middle">ZONA DE PERCUSIÓN</text>
-            
+        // Radios estándar para los arcos de vientos
+        const baseRadiosArcos = { "1": 140, "2": 210, "3": 280, "4": 350 };
+
+        // DETECTAR LA FILA DE VIENTOS MÁS PROFUNDA ACTIVA
+        let filaMaximaVientos = 0;
+        listaFilas.forEach(f => {
+            if (f.tipo !== 'percursion') {
+                let n = parseInt(f.nivel);
+                if (n > filaMaximaVientos) filaMaximaVientos = n;
+            }
+        });
+
+        // Si no hay vientos, la percusión por defecto se acomoda en un espacio óptimo intermedio
+        if (filaMaximaVientos === 0) filaMaximaVientos = 2; 
+
+        // El radio de la percusión se sitúa inmediatamente tras la última fila de vientos
+        const radioPercusionDinamico = (filaMaximaVientos * 70) + 120;
+
+        // Render del podio estático del Director
+        svg.innerHTML += `
             <rect x="375" y="460" width="50" height="35" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
             <text x="400" y="481" font-family='Montserrat' font-size="9" font-weight="700" text-anchor="middle">DIRECTOR</text>
         `;
-        svg.innerHTML += baseLayout;
 
-        let totalSillas = 0, totalAtriles = 0, totalPercusion = 0;
+        let totalSillas = 0, totalAtriles = 0, totalPercusionistas = 0;
         let descSillas = [], descAtriles = [], descPercusion = [];
 
-        // PROCESAR Y DISTRIBUIR LOS ELEMENTOS AGREGADOS POR EL USUARIO
         listaFilas.forEach((fila, idx) => {
-            totalSillas += fila.sillas;
-            totalAtriles += fila.atriles;
-            if(fila.sillas > 0) descSillas.push(`${fila.nombre} (${fila.sillas})`);
-            if(fila.atriles > 0) descAtriles.push(`${fila.nombre} (${fila.atriles})`);
+            // Clasificación y conteo logístico
+            if (fila.tipo === 'percursion') {
+                totalPercusionistas += fila.sillas;
+                if(fila.sillas > 0) descPercusion.push(`${fila.nombre} (${fila.sillas} Puestos)`);
+            } else {
+                totalSillas += fila.sillas;
+                totalAtriles += fila.atriles;
+                if(fila.sillas > 0) descSillas.push(`${fila.nombre} (${fila.sillas})`);
+                if(fila.atriles > 0) descAtriles.push(`${fila.nombre} (${fila.atriles})`);
+            }
 
-            // Añadir al panel de administración izquierdo
+            // Inserción en lista de control lateral
             const item = document.createElement('div');
             item.className = "fila-item";
             item.innerHTML = `
                 <div>
                     <strong>${fila.nombre}</strong><br>
-                    <small>${fila.tipo === 'percursion' ? 'Set Percusión' : fila.sillas+' Sillas / '+fila.atriles+' Atriles'}</small>
+                    <small>${fila.tipo === 'percursion' ? fila.sillas+' Percusionistas' : fila.sillas+'S / '+fila.atriles+'A'}</small>
                 </div>
                 <div class="fila-actions">
                     <button class="btn-action btn-edit" onclick="iniciarEdicion(${idx})">Editar</button>
@@ -505,68 +511,43 @@
             `;
             document.getElementById('lista-filas-agregadas').appendChild(item);
 
-            // RENDER VISUAL EN EL MAPA TÉCNICO
-            if(fila.tipo === 'percursion' && fila.perc_instrumentos.length > 0) {
-                totalPercusion += fila.perc_instrumentos.length;
-                descPercusion.push(`${fila.nombre}: [${fila.perc_instrumentos.join(', ')}]`);
-                
-                // Mapeo simétrico de los instrumentos de percusión dentro de la banda superior
-                const anchoDisponible = 600;
-                const inicioX = 100;
-                const pasoX = anchoDisponible / (fila.perc_instrumentos.length + 1);
+            // RENDER VISUAL VECTORIAL
+            if(fila.tipo === 'percursion' && fila.sillas > 0) {
+                // RENDERIZADO DINÁMICO DE SECCIÓN DE PERCUSIÓN COMO PUESTOS BOX CON ATRIL INDIVIDUAL
+                let anguloInicio = 210;
+                let anguloFin = 330;
+                const totalElementos = fila.sillas;
+                const pasoAngulo = totalElementos > 1 ? (anguloFin - anguloInicio) / (totalElementos - 1) : 0;
+                const anguloCentralUnico = anguloInicio + (anguloFin - anguloInicio) / 2;
 
-                fila.perc_instrumentos.forEach((ins, iIns) => {
-                    const posX = inicioX + (pasoX * (iIns + 1));
-                    const posY = 110;
-                    let svgInstrumento = "";
+                // Texto identificador arqueado sutilmente encima de sus puestos
+                const anguloTexto = anguloCentralUnico * (Math.PI / 180);
+                const txtX = centerX + (radioPercusionDinamico + 20) * Math.cos(anguloTexto);
+                const txtY = centerY + (radioPercusionDinamico + 20) * Math.sin(anguloTexto);
+                const rotacionTexto = anguloCentralUnico + 90;
+                svg.innerHTML += `<text x="${txtX}" y="${txtY}" font-family='Montserrat' font-size="8" font-weight="700" text-anchor="middle" transform="rotate(${rotacionTexto}, ${txtX}, ${txtY})">${fila.nombre.toUpperCase()}</text>`;
 
-                    // Diseños vectoriales puros para cada instrumento de percusión
-                    if(ins === "Timbales") {
-                        svgInstrumento = `
-                            <g transform="translate(${posX-25}, ${posY-12})">
-                                <circle cx="10" cy="12" r="10" fill="none" stroke="#000000" stroke-width="1.5"/>
-                                <circle cx="26" cy="12" r="8" fill="none" stroke="#000000" stroke-width="1.5"/>
-                                <circle cx="41" cy="12" r="7" fill="none" stroke="#000000" stroke-width="1.5"/>
-                                <text x="25" y="-4" font-family='Montserrat' font-size="8" font-weight="600" text-anchor="middle">Timbales</text>
-                            </g>`;
-                    } else if(ins === "Marimba") {
-                        svgInstrumento = `
-                            <g transform="translate(${posX-20}, ${posY-10})">
-                                <polygon points="0,0 40,3 40,15 0,18" fill="none" stroke="#000000" stroke-width="1.5"/>
-                                <line x1="8" y1="1" x2="8" y2="16" stroke="#000000"/>
-                                <line x1="16" y1="1.5" x2="16" y2="15.5" stroke="#000000"/>
-                                <line x1="24" y1="2" x2="24" y2="15" stroke="#000000"/>
-                                <line x1="32" y1="2.5" x2="32" y2="14.5" stroke="#000000"/>
-                                <text x="20" y="-5" font-family='Montserrat' font-size="8" font-weight="600" text-anchor="middle">Marimba</text>
-                            </g>`;
-                    } else if(ins === "Bombo") {
-                        svgInstrumento = `
-                            <g transform="translate(${posX}, ${posY+2})">
-                                <circle cx="0" cy="0" r="11" fill="none" stroke="#000000" stroke-width="1.5"/>
-                                <line x1="-14" y1="11" x2="14" y2="11" stroke="#000000" stroke-width="1"/>
-                                <line x1="-11" y1="0" x2="-14" y2="11" stroke="#000000"/>
-                                <line x1="11" y1="0" x2="14" y2="11" stroke="#000000"/>
-                                <text x="0" y="-15" font-family='Montserrat' font-size="8" font-weight="600" text-anchor="middle">Bombo</text>
-                            </g>`;
-                    } else if(ins === "Platos") {
-                        svgInstrumento = `
-                            <g transform="translate(${posX}, ${posY+2})">
-                                <circle cx="-6" cy="0" r="8" fill="none" stroke="#000000" stroke-width="1"/>
-                                <circle cx="6" cy="0" r="8" fill="none" stroke="#000000" stroke-width="1"/>
-                                <line x1="-6" y1="0" x2="6" y2="0" stroke="#000000" stroke-width="1.5"/>
-                                <text x="0" y="-15" font-family='Montserrat' font-size="8" font-weight="600" text-anchor="middle">Platos</text>
-                            </g>`;
-                    }
-                    svg.innerHTML += svgInstrumento;
-                });
+                for(let i=0; i<totalElementos; i++) {
+                    const anguloActual = totalElementos > 1 ? (anguloInicio + (pasoAngulo * i)) : anguloCentralUnico;
+                    const rad = anguloActual * (Math.PI / 180);
+                    
+                    const x = centerX + radioPercusionDinamico * Math.cos(rad);
+                    const y = centerY + radioPercusionDinamico * Math.sin(rad);
+                    const rotacionGrados = anguloActual + 90;
+
+                    // Cuadro técnico representativo de puesto de percusión con atril frontal individual automático
+                    let boxPercusion = `
+                        <g transform="translate(${x}, ${y}) rotate(${rotacionGrados})">
+                            <rect x="-10" y="-10" width="20" height="20" fill="none" stroke="#000000" stroke-width="1.2" stroke-dasharray="2,2"/>
+                            <text x="0" y="3" font-family='Montserrat' font-size="8" font-weight="600" text-anchor="middle">P</text>
+                            <line x1="-7" y1="14" x2="7" y2="14" stroke="#000000" stroke-width="2"/>
+                        </g>
+                    `;
+                    svg.innerHTML += boxPercusion;
+                }
             }
             else if(fila.tipo === 'arco') {
-                const radio = radiosArcos[fila.nivel];
-                
-                // Dibujar arco base sutil
-                svg.innerHTML += `<path d="M ${centerX - radio} ${centerY} A ${radio} ${radio} 0 0 1 ${centerX + radio} ${centerY}" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="4,4"/>`;
-
-                // Configurar límites angulares exactos del arco según la simetría de la imagen
+                const radio = baseRadiosArcos[fila.nivel];
                 let anguloInicio = 200; 
                 let anguloFin = 340;    
                 
@@ -577,33 +558,27 @@
                 const pasoAngulo = totalElementos > 1 ? (anguloFin - anguloInicio) / (totalElementos - 1) : 0;
                 const anguloCentralUnico = anguloInicio + (anguloFin - anguloInicio) / 2;
 
-                // Escribir el identificador textual de la fila de manera centrada sobre la curva
                 const anguloTexto = anguloCentralUnico * (Math.PI / 180);
                 const txtX = centerX + (radio + 16) * Math.cos(anguloTexto);
                 const txtY = centerY + (radio + 16) * Math.sin(anguloTexto);
                 const rotacionTexto = anguloCentralUnico + 90;
-                
                 svg.innerHTML += `<text x="${txtX}" y="${txtY}" font-family='Montserrat' font-size="8" font-weight="700" text-anchor="middle" transform="rotate(${rotacionTexto}, ${txtX}, ${txtY})">${fila.nombre.toUpperCase()}</text>`;
 
-                // Posicionar geométricamente cada conjunto de hardware
                 for(let i=0; i<totalElementos; i++) {
                     const anguloActual = totalElementos > 1 ? (anguloInicio + (pasoAngulo * i)) : anguloCentralUnico;
                     const rad = anguloActual * (Math.PI / 180);
                     
                     const x = centerX + radio * Math.cos(rad);
                     const y = centerY + radio * Math.sin(rad);
-                    const rotacionGrados = anguloActual + 90; // Rotación orientada hacia el Director
+                    const rotacionGrados = anguloActual + 90;
 
                     let molduraMobiliario = `<g transform="translate(${x}, ${y}) rotate(${rotacionGrados})">`;
-                    
-                    // Render del icono técnico de Silla
                     if(i < fila.sillas) {
                         molduraMobiliario += `
                             <rect x="-7" y="-7" width="14" height="13" rx="1" fill="none" stroke="#000000" stroke-width="1.2"/>
                             <line x1="-7" y1="-7" x2="7" y2="-7" stroke="#000000" stroke-width="2.5"/>
                         `;
                     }
-                    // Render del icono técnico de Atril
                     if(i < fila.atriles) {
                         molduraMobiliario += `<line x1="-6" y1="9" x2="6" y2="9" stroke="#000000" stroke-width="2"/>`;
                     }
@@ -612,10 +587,7 @@
                 }
             }
             else if(fila.tipo === 'recta') {
-                // Cálculo de altura fija en base a la fila asignada
-                const posY = 450 - (fila.nivel * 75);
-                
-                svg.innerHTML += `<line x1="100" y1="${posY}" x2="700" y2="${posY}" stroke="#000000" stroke-width="1" stroke-dasharray="4,4"/>`;
+                const posY = 450 - (fila.nivel * 70);
                 svg.innerHTML += `<text x="400" y="${posY - 12}" font-family='Montserrat' font-size="8" font-weight="700" text-anchor="middle">${fila.nombre.toUpperCase()}</text>`;
 
                 const totalElementos = Math.max(fila.sillas, fila.atriles);
@@ -647,29 +619,30 @@
             }
         });
 
-        // RECONSTRUCCIÓN EXACTA DE LA TABLA DE CARGA DE MATERIALES
+        // RECONSTRUCCIÓN DE LA TABLA TÉCNICA CONSOLIDADA (Incluye lógica automática de percusión)
+        const totalAtrilesGlobal = totalAtriles + totalPercusionistas; 
+
         const tbody = document.getElementById('tabla-totales-body');
         tbody.innerHTML = `
             <tr>
                 <td><strong>Sillas de Músico</strong></td>
                 <td style="text-align:center; font-weight:700; font-size:14px;">${totalSillas}</td>
-                <td>Sillas de músico estándar para distribución simétrica en filas de vientos. Cobertura: ${descSillas.join(', ') || 'Sin asignaciones.'}</td>
+                <td>Sillas estándar de orquesta para distribución simétrica en filas de vientos. Cobertura: ${descSillas.join(', ') || 'Sin asignaciones.'}</td>
             </tr>
             <tr>
                 <td><strong>Atriles Sinfónicos</strong></td>
-                <td style="text-align:center; font-weight:700; font-size:14px;">${totalAtriles}</td>
-                <td>Atriles sinfónicos metálicos pesados de alta estabilidad. Cobertura: ${descAtriles.join(', ') || 'Sin asignaciones.'}</td>
+                <td style="text-align:center; font-weight:700; font-size:14px;">${totalAtrilesGlobal}</td>
+                <td>Atriles metálicos pesados regulables. Incluye los compartidos/individuales de vientos (${totalAtriles}) más un atril individual por percusionista (${totalPercusionistas}). Distribución vientos: ${descAtriles.join(', ') || 'Ninguna.'}</td>
             </tr>
-            ${totalPercusion > 0 ? `
+            ${totalPercusionistas > 0 ? `
             <tr>
-                <td><strong>Sets de Percusión</strong></td>
-                <td style="text-align:center; font-weight:700; font-size:14px;">${totalPercusion}</td>
-                <td>Unidades e instrumentos pesados posicionados en la zona norte del escenario: ${descPercusion.join(' | ')}</td>
+                <td><strong>Puestos de Percusión</strong></td>
+                <td style="text-align:center; font-weight:700; font-size:14px;">${totalPercusionistas}</td>
+                <td>Estaciones modulares de trabajo (recuadros limpios de ejecución) situados en la última fila del orgánico: ${descPercusion.join(' | ')}</td>
             </tr>` : ''}
         `;
     }
 
-    // Inicializar el render vacío por defecto
     actualizarTodo();
 </script>
 
