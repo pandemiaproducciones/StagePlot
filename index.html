@@ -3,97 +3,411 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RIDER MANAGER v2.2</title>
+    <title>RIDER MANAGER v2.3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --primary: #111111; --bg: #f4f6f8; --card: #ffffff; --border: #b3b3b3; --accent: #0056b3; --danger: #bd2130; }
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg); color: var(--primary); margin: 0; padding: 20px; }
-        .container { max-width: 1500px; margin: 0 auto; }
-        header { border-bottom: 3px solid var(--primary); padding-bottom: 15px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
-        h1 { margin: 0; font-size: 24px; text-transform: uppercase; font-weight: 700; }
-        .version { font-size: 13px; background: var(--primary); color: white; padding: 4px 10px; border-radius: 4px; }
-        .input-agrupacion { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 600; padding: 8px; border: 1px dashed var(--border); width: 350px; text-transform: uppercase; }
-        .main-layout { display: grid; grid-template-columns: 420px 1fr; gap: 25px; }
-        .panel { background: var(--card); border: 1px solid var(--border); padding: 20px; border-radius: 8px; margin-bottom: 20px; }
-        .panel h2 { margin-top: 0; font-size: 14px; text-transform: uppercase; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 12px; text-transform: uppercase; }
-        input { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 4px; font-family: 'Montserrat', sans-serif; }
-        .radio-group { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px; }
-        .radio-label { display: flex; align-items: center; gap: 5px; background: #e9ecef; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 500; }
-        .btn-primary { background: var(--primary); color: white; border: none; padding: 12px; font-weight: 700; cursor: pointer; text-transform: uppercase; width: 100%; border-radius: 4px; margin-top: 5px; }
-        .btn-export { background: #1e7e34; }
-        .fila-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #dee2e6; font-size: 13px; }
-        .fila-actions { display: flex; gap: 5px; }
-        .btn-action { padding: 4px 8px; font-size: 11px; cursor: pointer; border: none; }
+        :root { 
+            --primary: #111111; 
+            --bg: #f4f6f8; 
+            --card: #ffffff; 
+            --border: #b3b3b3; 
+            --accent: #0056b3; 
+            --danger: #bd2130; 
+        }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--primary); 
+            margin: 0; 
+            padding: 20px; 
+        }
+        
+        .container { 
+            max-width: 1500px; 
+            margin: 0 auto; 
+        }
+        
+        header { 
+            border-bottom: 3px solid var(--primary); 
+            padding-bottom: 15px; 
+            margin-bottom: 25px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        h1 { 
+            margin: 0; 
+            font-size: 24px; 
+            text-transform: uppercase; 
+            font-weight: 700; 
+        }
+        
+        .version { 
+            font-size: 13px; 
+            background: var(--primary); 
+            color: white; 
+            padding: 4px 10px; 
+            border-radius: 4px; 
+        }
+        
+        .input-agrupacion { 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 18px; 
+            font-weight: 600; 
+            padding: 8px; 
+            border: 1px dashed var(--border); 
+            width: 100%;
+            max-width: 420px; 
+            text-transform: uppercase; 
+        }
+
+        /* DISEÑO OPTIMIZADO: GRID PARA ESCRITORIO, SE ADAPTA A COLUMNA ÚNICA EN MÓVILES */
+        .main-layout { 
+            display: grid; 
+            grid-template-columns: 420px 1fr; 
+            gap: 25px; 
+        }
+        
+        @media (max-width: 1100px) {
+            .main-layout { 
+                grid-template-columns: 1fr; /* Formulario arriba, plano abajo automáticamente */
+            }
+            .input-agrupacion {
+                max-width: 100%;
+            }
+        }
+
+        .panel { 
+            background: var(--card); 
+            border: 1px solid var(--border); 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+        }
+        
+        .panel h2 { 
+            margin-top: 0; 
+            font-size: 14px; 
+            text-transform: uppercase; 
+            border-bottom: 2px solid var(--primary); 
+            padding-bottom: 8px; 
+        }
+        
+        .form-group { 
+            margin-bottom: 15px; 
+        }
+        
+        label { 
+            display: block; 
+            font-weight: 600; 
+            margin-bottom: 6px; 
+            font-size: 12px; 
+            text-transform: uppercase; 
+        }
+        
+        input[type="text"], input[type="number"] { 
+            width: 100%; 
+            padding: 10px; 
+            border: 1px solid var(--border); 
+            border-radius: 4px; 
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif; 
+        }
+        
+        .radio-group { 
+            display: flex; 
+            gap: 8px; 
+            flex-wrap: wrap; 
+            margin-top: 5px; 
+        }
+        
+        .radio-label { 
+            display: flex; 
+            align-items: center; 
+            gap: 5px; 
+            background: #e9ecef; 
+            padding: 6px 12px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-size: 12px; 
+            font-weight: 500; 
+        }
+        
+        .btn-primary { 
+            background: var(--primary); 
+            color: white; 
+            border: none; 
+            padding: 12px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            width: 100%; 
+            border-radius: 4px; 
+            margin-top: 5px; 
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn-export { 
+            background: #1e7e34; 
+        }
+        
+        .btn-export:hover {
+            background: #155724;
+        }
+
+        /* FILAS AGREGADAS CON TEXTO COMPLETO EN BOTONES */
+        .fila-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 12px 10px; 
+            border-bottom: 1px solid #dee2e6; 
+            font-size: 13px; 
+        }
+        
+        .fila-actions { 
+            display: flex; 
+            gap: 5px; 
+        }
+        
+        .btn-action { 
+            padding: 6px 10px; 
+            font-size: 11px; 
+            font-weight: 700;
+            cursor: pointer; 
+            border: none; 
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
         .btn-edit { background: var(--accent); color: white; }
         .btn-del { background: var(--danger); color: white; }
-        .stage-box { border: 2px solid #000000; position: relative; width: 100%; height: 520px; background: #ffffff; }
-        .document-container { background: #ffffff; border: 2px solid #000000; padding: 30px; }
+
+        /* CONTENEDOR TÉCNICO COMPLETO EXPORTABLE */
+        .document-container { 
+            background: #ffffff; 
+            border: 2px solid #000000; 
+            padding: 30px; 
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
         .doc-header-title { text-align: center; font-size: 26px; font-weight: 700; text-transform: uppercase; margin: 0; }
-        .doc-header-subtitle { text-align: center; font-size: 13px; font-weight: 600; margin-bottom: 20px; border-bottom: 2px solid #000000; }
-        .doc-header-institucional { display: block; font-weight: 700; margin-top: 4px; }
-        @media print { body { background: #ffffff; padding: 0; } .sidebar, header { display: none !important; } .document-container { border: none; padding: 0; } }
+        .doc-header-subtitle { text-align: center; font-size: 13px; font-weight: 600; margin-bottom: 20px; border-bottom: 2px solid #000000; padding-bottom: 8px; text-transform: uppercase; }
+        .doc-header-institucional { display: block; font-weight: 700; margin-top: 4px; font-size: 13px; }
+        
+        .stage-box { 
+            border: 2px solid #000000; 
+            position: relative; 
+            width: 100%; 
+            height: 520px; 
+            background: #ffffff; 
+            margin-bottom: 20px;
+        }
+        
+        /* CUADRO INFERIOR DE TOTALES Y LOGÍSTICA */
+        .technical-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 15px; 
+        }
+        
+        .technical-table th, .technical-table td { 
+            border: 1px solid #000000; 
+            padding: 10px; 
+            font-size: 12px; 
+            color: #000000;
+            vertical-align: top;
+        }
+        
+        .technical-table th { 
+            background: #000000; 
+            color: #ffffff; 
+            text-transform: uppercase; 
+            font-weight: 700; 
+            font-size: 11px; 
+            text-align: left;
+        }
+        
+        .doc-footer { 
+            margin-top: 25px; 
+            text-align: center; 
+            font-size: 11px; 
+            font-weight: 600; 
+            border-top: 2px solid #000000; 
+            padding-top: 10px; 
+            text-transform: uppercase; 
+        }
+
+        /* REGLAS ESTRICTAS DE IMPRESIÓN: CENTRADO COMPLETO EN LA PÁGINA */
+        @media print { 
+            body { 
+                background: #ffffff; 
+                padding: 0; 
+                margin: 0;
+            } 
+            .sidebar, header { 
+                display: none !important; 
+            } 
+            .main-layout { 
+                display: block; 
+            } 
+            .document-container { 
+                border: none; 
+                padding: 0; 
+                width: 100%;
+                max-width: 100%;
+                min-height: 98vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center; /* Centra verticalmente en la hoja */
+                align-items: center;     /* Centra horizontalmente en la hoja */
+            } 
+            .document-container > div, .technical-table, .doc-footer {
+                width: 100%; /* Asegura que mantengan la proporción al centrarse */
+                max-width: 800px;
+            }
+            .stage-box {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <header><h1>RIDER MANAGER <span class="version">v2.2</span></h1><input type="text" id="nombre-agrupacion" class="input-agrupacion" placeholder="NOMBRE DE LA BANDA" oninput="actualizarTodo()"></header>
+    <header>
+        <h1>RIDER MANAGER <span class="version">v2.3</span></h1>
+        <input type="text" id="nombre-agrupacion" class="input-agrupacion" placeholder="[ ESCRIBE EL NOMBRE DE LA BANDA ]" oninput="actualizarTodo()">
+    </header>
 
     <div class="main-layout">
         <div class="sidebar">
             <div class="panel">
                 <h2 id="form-title">Configurar Fila</h2>
                 <input type="hidden" id="edit-index" value="-1">
-                <div class="form-group"><label>Nombre</label><input type="text" id="nombre-seccion"></div>
-                <div class="form-group"><label>Tipo</label><div class="radio-group" id="radio-tipo">
-                    <label class="radio-label"><input type="radio" name="tipo-fila" value="arco" checked onclick="toggleCampos()"> Arco</label>
-                    <label class="radio-label"><input type="radio" name="tipo-fila" value="recta" onclick="toggleCampos()"> Recta</label>
-                    <label class="radio-label"><input type="radio" name="tipo-fila" value="percursion" onclick="toggleCampos()"> Percusión</label>
-                </div></div>
-                <div id="opciones-geometria"><div class="form-group"><label>Alineación</label><div class="radio-group" id="radio-alineacion">
-                    <label class="radio-label"><input type="radio" name="alineacion" value="Centro" checked> Centro</label>
-                    <label class="radio-label"><input type="radio" name="alineacion" value="Izquierda"> Izquierda</label>
-                    <label class="radio-label"><input type="radio" name="alineacion" value="Derecha"> Derecha</label>
-                </div></div></div>
-                <div id="cantidades-vientos"><div class="form-group"><label>Sillas</label><input type="number" id="cant-sillas" value="8"></div>
-                <div class="form-group"><label>Atriles</label><input type="number" id="cant-atriles" value="4"></div></div>
-                <div id="cantidades-percursion" style="display:none;"><div class="form-group"><label>Percusionistas</label><input type="number" id="cant-percusionistas" value="4"></div></div>
+                
+                <div class="form-group">
+                    <label>Nombre de la Fila</label>
+                    <input type="text" id="nombre-seccion" placeholder="Ej: Clarinetes, Flautas...">
+                </div>
+                
+                <div class="form-group">
+                    <label>Tipo de Formación</label>
+                    <div class="radio-group">
+                        <label class="radio-label"><input type="radio" name="tipo-fila" value="arco" checked onclick="toggleCampos()"> Arco</label>
+                        <label class="radio-label"><input type="radio" name="tipo-fila" value="recta" onclick="toggleCampos()"> Recta</label>
+                        <label class="radio-label"><input type="radio" name="tipo-fila" value="percursion" onclick="toggleCampos()"> Percusión</label>
+                    </div>
+                </div>
+                
+                <div id="opciones-geometria">
+                    <div class="form-group">
+                        <label>Alineación</label>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" name="alineacion" value="Centro" checked> Centro</label>
+                            <label class="radio-label"><input type="radio" name="alineacion" value="Izquierda"> Izquierda</label>
+                            <label class="radio-label"><input type="radio" name="alineacion" value="Derecha"> Derecha</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="cantidades-vientos">
+                    <div class="form-group"><label>Sillas</label><input type="number" id="cant-sillas" value="8" min="0"></div>
+                    <div class="form-group"><label>Atriles</label><input type="number" id="cant-atriles" value="4" min="0"></div>
+                </div>
+                
+                <div id="cantidades-percursion" style="display:none;">
+                    <div class="form-group"><label>Percusionistas</label><input type="number" id="cant-percusionistas" value="4" min="0"></div>
+                </div>
+                
                 <button class="btn-primary" id="btn-guardar-fila" onclick="guardarFila()">Insertar al Plano</button>
                 <button class="btn-primary btn-export" onclick="window.print()">Exportar Rider</button>
             </div>
-            <div class="panel"><h2>Secciones Agregadas</h2><div id="lista-filas-agregadas"></div></div>
+            
+            <div class="panel">
+                <h2>Secciones Agregadas</h2>
+                <div id="lista-filas-agregadas"></div>
+            </div>
         </div>
 
         <div class="document-container">
-            <h1 class="doc-header-title" id="doc-titulo">NOMBRE DE LA BANDA</h1>
-            <div class="doc-header-subtitle">Plano de Escenario<span class="doc-header-institucional">Programa Departamental de Bandas de Caldas</span></div>
-            <div class="stage-box"><svg id="stage-svg" width="100%" height="100%" viewBox="0 0 800 520"></svg></div>
+            <div>
+                <h1 class="doc-header-title" id="doc-titulo">NOMBRE DE LA BANDA</h1>
+                <div class="doc-header-subtitle">
+                    Plano de Escenario
+                    <span class="doc-header-institucional">Programa Departamental de Bandas de Caldas</span>
+                </div>
+                <div class="stage-box">
+                    <svg id="stage-svg" width="100%" height="100%" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff;"></svg>
+                </div>
+            </div>
+
+            <table class="technical-table">
+                <thead>
+                    <tr>
+                        <th style="width: 20%;">ARTÍCULO</th>
+                        <th style="width: 15%; text-align: center;">CANTIDAD</th>
+                        <th style="width: 65%;">DESCRIPCIÓN / DISTRIBUCIÓN POR FILAS</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-totales-body">
+                    </tbody>
+            </table>
+
+            <div class="doc-footer">PANDEMIA PRODUCCIONES • Riders para Agrupaciones 2026</div>
         </div>
     </div>
 </div>
 
 <script>
     let listaFilas = [];
-    function toggleCampos() { const tipo = document.querySelector('input[name="tipo-fila"]:checked').value; document.getElementById('opciones-geometria').style.display = (tipo === 'percursion') ? 'none' : 'block'; document.getElementById('cantidades-vientos').style.display = (tipo === 'percursion') ? 'none' : 'block'; document.getElementById('cantidades-percursion').style.display = (tipo === 'percursion') ? 'block' : 'none'; }
+    
+    function toggleCampos() { 
+        const tipo = document.querySelector('input[name="tipo-fila"]:checked').value; 
+        document.getElementById('opciones-geometria').style.display = (tipo === 'percursion') ? 'none' : 'block'; 
+        document.getElementById('cantidades-vientos').style.display = (tipo === 'percursion') ? 'none' : 'block'; 
+        document.getElementById('cantidades-percursion').style.display = (tipo === 'percursion') ? 'block' : 'none'; 
+    }
     
     function guardarFila() {
-        const nombre = document.getElementById('nombre-seccion').value || "Fila";
+        const nombre = document.getElementById('nombre-seccion').value.trim() || "Fila";
         const tipo = document.querySelector('input[name="tipo-fila"]:checked').value;
         const sillas = tipo === 'percursion' ? parseInt(document.getElementById('cant-percusionistas').value) : parseInt(document.getElementById('cant-sillas').value);
         const atriles = tipo === 'percursion' ? sillas : parseInt(document.getElementById('cant-atriles').value);
         const alineacion = tipo === 'percursion' ? 'Centro' : document.querySelector('input[name="alineacion"]:checked').value;
         const editIndex = parseInt(document.getElementById('edit-index').value);
-        const datos = { nombre, tipo, sillas, atriles, alineacion };
-        if(editIndex === -1) listaFilas.push(datos); else listaFilas[editIndex] = datos;
         
-        // Reset a por defecto
+        const datos = { nombre, tipo, sillas, atriles, alineacion };
+        
+        if(editIndex === -1) {
+            listaFilas.push(datos);
+        } else {
+            listaFilas[editIndex] = datos;
+        }
+        
+        // Reinicio automático a valores base (Arco y Centro)
         document.getElementById('nombre-seccion').value = "";
+        document.getElementById('cant-sillas').value = "8";
+        document.getElementById('cant-atriles').value = "4";
+        document.getElementById('cant-percusionistas').value = "4";
         document.querySelectorAll('input[name="tipo-fila"]')[0].checked = true;
         document.querySelectorAll('input[name="alineacion"]')[0].checked = true;
         document.getElementById('edit-index').value = "-1";
+        document.getElementById('form-title').innerText = "Configurar Fila";
         document.getElementById('btn-guardar-fila').innerText = "Insertar al Plano";
+        
         toggleCampos();
         actualizarTodo();
     }
@@ -102,61 +416,170 @@
         const fila = listaFilas[idx];
         document.getElementById('nombre-seccion').value = fila.nombre;
         document.querySelector(`input[name="tipo-fila"][value="${fila.tipo}"]`).checked = true;
-        document.querySelector(`input[name="alineacion"][value="${fila.alineacion}"]`).checked = true;
-        if(fila.tipo === 'percursion') document.getElementById('cant-percusionistas').value = fila.sillas;
-        else { document.getElementById('cant-sillas').value = fila.sillas; document.getElementById('cant-atriles').value = fila.atriles; }
-        document.getElementById('edit-index').value = idx;
-        document.getElementById('btn-guardar-fila').innerText = "Guardar Cambios";
         toggleCampos();
+        
+        if(fila.tipo === 'percursion') {
+            document.getElementById('cant-percusionistas').value = fila.sillas;
+        } else { 
+            document.getElementById('cant-sillas').value = fila.sillas; 
+            document.getElementById('cant-atriles').value = fila.atriles; 
+            document.querySelector(`input[name="alineacion"][value="${fila.alineacion}"]`).checked = true;
+        }
+        
+        document.getElementById('edit-index').value = idx;
+        document.getElementById('form-title').innerText = "Editando Fila";
+        document.getElementById('btn-guardar-fila').innerText = "Guardar Cambios";
     }
 
-    function eliminarFila(idx) { listaFilas.splice(idx, 1); actualizarTodo(); }
+    function eliminarFila(idx) { 
+        listaFilas.splice(idx, 1); 
+        actualizarTodo(); 
+    }
 
     function actualizarTodo() {
         document.getElementById('doc-titulo').innerText = document.getElementById('nombre-agrupacion').value.toUpperCase() || "NOMBRE DE LA BANDA";
-        const lista = document.getElementById('lista-filas-agregadas'); lista.innerHTML = "";
-        const svg = document.getElementById('stage-svg'); svg.innerHTML = "";
-        svg.innerHTML += `<rect x="375" y="460" width="50" height="35" fill="none" stroke="#000000"/><text x="400" y="482" font-size="9" font-weight="700" text-anchor="middle">DIR</text>`;
+        const lista = document.getElementById('lista-filas-agregadas'); 
+        lista.innerHTML = "";
+        const svg = document.getElementById('stage-svg'); 
+        svg.innerHTML = "";
+        
+        // Elemento fijo: Podio del Director
+        svg.innerHTML += `<rect x="375" y="460" width="50" height="35" fill="none" stroke="#000000" stroke-width="1.5"/><text x="400" y="482" font-family='Montserrat' font-size="9" font-weight="700" text-anchor="middle">DIR</text>`;
+
+        let totalSillas = 0, totalAtriles = 0, totalPercusionistas = 0;
+        let desgloseSillas = [], desgloseAtriles = [], desglosePercusion = [];
+        let indiceVientoSucesivo = 0;
 
         listaFilas.forEach((fila, idx) => {
-            lista.innerHTML += `<div class="fila-item"><div><strong>${fila.nombre}</strong><br><small>${fila.tipo}</small></div><div class="fila-actions"><button class="btn-action btn-edit" onclick="editarFila(${idx})">E</button><button class="btn-action btn-del" onclick="eliminarFila(${idx})">X</button></div></div>`;
-            const prof = idx + 1;
+            // Desglose escrito para la tabla informativa inferior
+            if (fila.tipo === 'percursion') {
+                totalPercusionistas += fila.sillas;
+                if(fila.sillas > 0) desglosePercusion.push(`${fila.nombre}: ${fila.sillas} puestos`);
+            } else {
+                totalSillas += fila.sillas;
+                totalAtriles += fila.atriles;
+                if(fila.sillas > 0) desgloseSillas.push(`${fila.nombre}: ${fila.sillas} sillas`);
+                if(fila.atriles > 0) desgloseAtriles.push(`${fila.nombre}: ${fila.atriles} atriles`);
+                indiceVientoSucesivo++; 
+            }
+
+            // Inyección del listado lateral con botones de TEXTO COMPLETO
+            lista.innerHTML += `
+                <div class="fila-item">
+                    <div><strong>${fila.nombre}</strong><br><small>${fila.tipo.toUpperCase()} (${fila.alineacion})</small></div>
+                    <div class="fila-actions">
+                        <button class="btn-action btn-edit" onclick="editarFila(${idx})">Editar</button>
+                        <button class="btn-action btn-del" onclick="eliminarFila(${idx})">Eliminar</button>
+                    </div>
+                </div>`;
+            
+            let prof = indiceVientoSucesivo;
+            if (fila.tipo === 'percursion') {
+                let vientosTotalesActivos = listaFilas.filter(f => f.tipo !== 'percursion').length;
+                prof = (vientosTotalesActivos > 0) ? vientosTotalesActivos + 1 : 2;
+            }
+
+            // A. CONSTRUCCIÓN GEOMÉTRICA DE LA SECCIÓN DE PERCUSIÓN (RECTA)
             if(fila.tipo === 'percursion') {
                 const y = 450 - (prof * 70);
-                svg.innerHTML += `<text x="400" y="${y-15}" font-size="8" font-weight="700" text-anchor="middle">${fila.nombre.toUpperCase()}</text>`;
+                svg.innerHTML += `<text x="400" y="${y-25}" font-family='Montserrat' font-size="8" font-weight="700" text-anchor="middle">${fila.nombre.toUpperCase()}</text>`;
+                
+                const inicioX = 150; const finX = 650;
+                const pasoX = fila.sillas > 1 ? (finX - inicioX) / (fila.sillas - 1) : 0;
+                const centroXUnico = inicioX + (finX - inicioX) / 2;
+
                 for(let i=0; i<fila.sillas; i++) {
-                    const x = 400 + ((i - (fila.sillas-1)/2) * 35);
-                    svg.innerHTML += `<g transform="translate(${x}, ${y})"><rect x="-10" y="-10" width="20" height="20" fill="none" stroke="#000000" stroke-dasharray="2,2"/><text x="0" y="3" font-size="8" text-anchor="middle">P</text><g transform="translate(0, 16)"><line x1="-7" y1="0" x2="7" y2="0" stroke="#000000" stroke-width="2"/><line x1="0" y1="0" x2="0" y2="5" stroke="#000000" stroke-width="1.2"/></g></g>`;
+                    const x = fila.sillas > 1 ? (inicioX + (pasoX * i)) : centroXUnico;
+                    svg.innerHTML += `
+                        <g transform="translate(${x}, ${y})">
+                            <rect x="-10" y="-10" width="20" height="20" fill="none" stroke="#000000" stroke-dasharray="2,2"/>
+                            <text x="0" y="3" font-family='Montserrat' font-size="8" text-anchor="middle">P</text>
+                            <g transform="translate(0, 16)">
+                                <line x1="-7" y1="0" x2="7" y2="0" stroke="#000000" stroke-width="2"/>
+                                <line x1="0" y1="0" x2="0" y2="5" stroke="#000000" stroke-width="1.2"/>
+                            </g>
+                        </g>`;
                 }
-            } else if(fila.tipo === 'arco') {
-                const rSilla = 70 + (prof * 70), rAtril = rSilla - 22;
-                let angI = fila.alineacion === 'Izquierda' ? 200 : fila.alineacion === 'Derecha' ? 270 : 200;
-                let angF = fila.alineacion === 'Izquierda' ? 270 : fila.alineacion === 'Derecha' ? 340 : 340;
-                svg.innerHTML += `<text x="400" y="${500 + rSilla*Math.sin(270*Math.PI/180) - 10}" font-size="8" text-anchor="middle">${fila.nombre.toUpperCase()}</text>`;
-                for(let i=0; i<fila.sillas; i++) {
-                    const ang = angI + ((angF-angI)/(fila.sillas>1?fila.sillas-1:1)*i);
-                    const rad = ang * Math.PI/180;
-                    svg.innerHTML += `<g transform="translate(${400 + rSilla*Math.cos(rad)}, ${500 + rSilla*Math.sin(rad)}) rotate(${ang+90})"><rect x="-7" y="-7" width="14" height="13" rx="1" fill="none" stroke="#000000"/><line x1="-7" y1="-7" x2="7" y2="-7" stroke="#000000" stroke-width="2.5"/></g>`;
+            } 
+            // B. CONSTRUCCIÓN GEOMÉTRICA DEL ARCO CONCÉNTRICO CON DISTRIBUCIÓN PARALELA INTERNA
+            else if(fila.tipo === 'arco') {
+                const rSilla = 70 + (prof * 70); const rAtril = rSilla - 18;
+                let angI = 200; let angF = 340;
+                if(fila.alineacion === 'Izquierda') { angI = 195; angF = 270; }
+                if(fila.alineacion === 'Derecha') { angI = 270; angF = 345; }
+                
+                const angCentral = angI + (angF - angI) / 2;
+                const radTxt = angCentral * Math.PI / 180;
+                svg.innerHTML += `<text x="${400 + (rSilla+16)*Math.cos(radTxt)}" y="${500 + (rSilla+16)*Math.sin(radTxt)}" font-family='Montserrat' font-size="8" font-weight="700" text-anchor="middle" transform="rotate(${angCentral+90}, ${400 + (rSilla+16)*Math.cos(radTxt)}, ${500 + (rSilla+16)*Math.sin(radTxt)})">${fila.nombre.toUpperCase()}</text>`;
+                
+                if (fila.sillas > 0) {
+                    const pasoS = fila.sillas > 1 ? (angF - angI) / (fila.sillas - 1) : 0;
+                    for(let i=0; i<fila.sillas; i++) {
+                        const ang = fila.sillas > 1 ? (angI + (pasoS * i)) : angCentral;
+                        const rad = ang * Math.PI/180;
+                        svg.innerHTML += `<g transform="translate(${400 + rSilla*Math.cos(rad)}, ${500 + rSilla*Math.sin(rad)}) rotate(${ang+90})"><rect x="-7" y="-7" width="14" height="13" rx="1" fill="none" stroke="#000000" stroke-width="1.2"/><line x1="-7" y1="-7" x2="7" y2="-7" stroke="#000000" stroke-width="2.5"/></g>`;
+                    }
                 }
-                for(let i=0; i<fila.atriles; i++) {
-                    const ang = angI + ((angF-angI)/(fila.atriles>1?fila.atriles-1:1)*i);
-                    const rad = ang * Math.PI/180;
-                    svg.innerHTML += `<g transform="translate(${400 + rAtril*Math.cos(rad)}, ${500 + rAtril*Math.sin(rad)}) rotate(${ang+90})"><line x1="-7" y1="0" x2="7" y2="0" stroke="#000000" stroke-width="2"/><line x1="0" y1="0" x2="0" y2="5" stroke="#000000" stroke-width="1.2"/></g>`;
+                if (fila.atriles > 0) {
+                    const pasoA = fila.atriles > 1 ? (angF - angI) / (fila.atriles - 1) : 0;
+                    for(let i=0; i<fila.atriles; i++) {
+                        const ang = fila.atriles > 1 ? (angI + (pasoA * i)) : angCentral;
+                        const rad = ang * Math.PI/180;
+                        svg.innerHTML += `<g transform="translate(${400 + rAtril*Math.cos(rad)}, ${500 + rAtril*Math.sin(rad)}) rotate(${ang+90})"><line x1="-7" y1="0" x2="7" y2="0" stroke="#000000" stroke-width="2"/><line x1="0" y1="0" x2="0" y2="5" stroke="#000000" stroke-width="1.2"/></g>`;
+                    }
                 }
-            } else {
-                const y = 450 - (prof * 70);
-                svg.innerHTML += `<text x="400" y="${y-15}" font-size="8" text-anchor="middle">${fila.nombre.toUpperCase()}</text>`;
-                for(let i=0; i<fila.sillas; i++) {
-                    const x = 400 + ((i - (fila.sillas-1)/2) * 30);
-                    svg.innerHTML += `<g transform="translate(${x}, ${y})"><rect x="-7" y="-7" width="14" height="13" rx="1" fill="none" stroke="#000000"/><line x1="-7" y1="-7" x2="7" y2="-7" stroke="#000000" stroke-width="2.5"/></g>`;
+            } 
+            // C. CONSTRUCCIÓN GEOMÉTRICA DE LA FILA RECTA CON LÍMITES LATERALES AJUSTADOS
+            else {
+                const ySilla = 450 - (prof * 70); const yAtril = ySilla + 18;
+                svg.innerHTML += `<text x="400" y="${ySilla - 25}" font-family='Montserrat' font-size="8" font-weight="700" text-anchor="middle">${fila.nombre.toUpperCase()}</text>`;
+                
+                let inX = 150; let fiX = 650;
+                if(fila.alineacion === 'Izquierda') { inX = 100; fiX = 390; }
+                if(fila.alineacion === 'Derecha') { inX = 410; fiX = 700; }
+                const cenX = inX + (fiX - inX) / 2;
+
+                if (fila.sillas > 0) {
+                    const pasoS = fila.sillas > 1 ? (fiX - inX) / (fila.sillas - 1) : 0;
+                    for(let i=0; i<fila.sillas; i++) {
+                        const x = fila.sillas > 1 ? (inX + (pasoS * i)) : cenX;
+                        svg.innerHTML += `<g transform="translate(${x}, ${ySilla})"><rect x="-7" y="-7" width="14" height="13" rx="1" fill="none" stroke="#000000" stroke-width="1.2"/><line x1="-7" y1="-7" x2="7" y2="-7" stroke="#000000" stroke-width="2.5"/></g>`;
+                    }
                 }
-                for(let i=0; i<fila.atriles; i++) {
-                    const x = 400 + ((i - (fila.atriles-1)/2) * 30);
-                    svg.innerHTML += `<g transform="translate(${x}, ${y+18})"><line x1="-7" y1="0" x2="7" y2="0" stroke="#000000" stroke-width="2"/><line x1="0" y1="0" x2="0" y2="5" stroke="#000000" stroke-width="1.2"/></g>`;
+                if (fila.atriles > 0) {
+                    const pasoA = fila.atriles > 1 ? (fiX - inX) / (fila.atriles - 1) : 0;
+                    for(let i=0; i<fila.atriles; i++) {
+                        const x = fila.atriles > 1 ? (inX + (pasoA * i)) : cenX;
+                        svg.innerHTML += `<g transform="translate(${x}, ${yAtril})"><line x1="-7" y1="0" x2="7" y2="0" stroke="#000000" stroke-width="2"/><line x1="0" y1="0" x2="0" y2="5" stroke="#000000" stroke-width="1.2"/></g>`;
+                    }
                 }
             }
         });
+
+        // RECONSTRUCCIÓN Y ACTUALIZACIÓN DEL DETALLE DE TOTALES LOGÍSTICOS
+        const totalAtrilesGlobal = totalAtriles + totalPercusionistas;
+        const tbody = document.getElementById('tabla-totales-body');
+        tbody.innerHTML = `
+            <tr>
+                <td><strong>Sillas de Músico</strong></td>
+                <td style="text-align:center; font-weight:700; font-size:14px;">${totalSillas}</td>
+                <td>Distribución por filas: ${desgloseSillas.join(' / ') || 'Sin asignaciones.'}</td>
+            </tr>
+            <tr>
+                <td><strong>Atriles Sinfónicos</strong></td>
+                <td style="text-align:center; font-weight:700; font-size:14px;">${totalAtrilesGlobal}</td>
+                <td>Distribución por filas: ${desgloseAtriles.join(' / ') || 'Sin asignaciones.'} ${totalPercusionistas > 0 ? ` / Puestos de percusión: ${totalPercusionistas} atriles` : ''}</td>
+            </tr>
+            ${totalPercusionistas > 0 ? `
+            <tr>
+                <td><strong>Puestos de Percusión</strong></td>
+                <td style="text-align:center; font-weight:700; font-size:14px;">${totalPercusionistas}</td>
+                <td>Distribución de módulos: ${desglosePercusion.join(' / ')}</td>
+            </tr>` : ''}
+        `;
     }
+
+    actualizarTodo();
 </script>
 </body>
 </html>
